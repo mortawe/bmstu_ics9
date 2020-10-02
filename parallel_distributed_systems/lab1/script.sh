@@ -1,4 +1,5 @@
 #bin/bash
+hadoop fs -rm -r output
 
 mvn package
 
@@ -8,4 +9,3 @@ hadoop WordCountApp warandpeace1.txt output
 
 hadoop fs -copyToLocal output
 
-hadoop fs -rm -r output
