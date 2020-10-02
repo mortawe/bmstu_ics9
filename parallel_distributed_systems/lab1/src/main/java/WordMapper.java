@@ -11,7 +11,10 @@ public class WordMapper extends Mapper<LongWritable, Text, Text, IntWritable> {
             InterruptedException {
         String refactoredString = value.toString().toLowerCase().replaceAll("[^a-zA-Z0-9а-яА-Я]", "");
         String []words = refactoredString.split(" ");
-        
+
+        for (String word : words) {
+            context.write(new Text(word), new IntWritable(1));
+        }
 
     }
 }
