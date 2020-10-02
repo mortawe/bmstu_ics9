@@ -13,7 +13,6 @@ public class WordReducer extends Reducer<Text, IntWritable, Text, LongWritable> 
         Iterator it = values.iterator();
         long count = 0;
         for (; it.hasNext(); it.next(), count++) {
-
         }
         context.write(key, new LongWritable(count));
     }
