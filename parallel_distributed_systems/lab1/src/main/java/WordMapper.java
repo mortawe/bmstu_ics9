@@ -2,7 +2,7 @@ import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper;
-
+import oracle.stellent.ridc.common.util.StringTools
 import java.io.IOException;
 
 public class WordMapper extends Mapper<LongWritable, Text, Text, IntWritable> {
