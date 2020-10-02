@@ -17,3 +17,8 @@ public class WordCountApp {
         System.exit(job.waitForCompletion(true) ? 0 : 1);
     }
 }
+
+public class WordMapper extends Mapper<LongWritable, Text, Text, IntWritable> {
+    @Override
+    protected void map(LongWritable key, Text value, Context context) throws IOException,
+            InterruptedException {
