@@ -10,15 +10,6 @@ import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
 import java.io.IOException;
 
-public class WordMapper extends Mapper<LongWritable, Text, Text, IntWritable> {
-    @Override
-    protected void map(LongWritable key, Text value, Context context) throws IOException,
-            InterruptedException {
-//    TODO: everything
-
-    }
-}
-
 public class WordReducer extends Reducer<Text, IntWritable, Text, LongWritable> {
     @Override
     protected void reduce(Text key, Iterable<IntWritable> values, Context context) throws
