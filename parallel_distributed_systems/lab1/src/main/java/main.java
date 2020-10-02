@@ -1,7 +1,5 @@
-import hadoop.fs.Path;
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.mapreduce.Job;
-import ha
 
 public class WordCountApp {
     public static void main(String[] args) throws Exception {
