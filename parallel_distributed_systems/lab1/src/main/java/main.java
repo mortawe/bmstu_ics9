@@ -1,4 +1,4 @@
-import org.apache.hadoop.io.IntWritable;
+
 
 public class WordCountApp {
     public static void main(String[] args) throws Exception {
