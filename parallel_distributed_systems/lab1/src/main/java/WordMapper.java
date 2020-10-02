@@ -16,6 +16,6 @@ public class WordMapper extends Mapper<LongWritable, Text, Text, IntWritable> {
         for (String word : words) {
             context.write(new Text(word), new IntWritable(1));
         }
-
+        return;
     }
 }
