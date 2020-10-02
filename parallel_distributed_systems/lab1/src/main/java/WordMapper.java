@@ -9,7 +9,7 @@ public class WordMapper extends Mapper<LongWritable, Text, Text, IntWritable> {
     @Override
     protected void map(LongWritable key, Text value, Context context) throws IOException,
             InterruptedException {
-        String inputString = value.toString().toLowerCase().replaceAll()
+        String inputString = value.toString().toLowerCase().replaceAll("[^a-zA-Z0-9]", " ");
 
     }
 }
