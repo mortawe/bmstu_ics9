@@ -10,9 +10,9 @@ public class WordReducer extends Reducer<Text, IntWritable, Text, LongWritable> 
     @Override
     protected void reduce(Text key, Iterable<IntWritable> values, Context context) throws
             IOException, InterruptedException {
-        long count=0;
+        long count = 0;
         Iterator iter = values.iterator();
-        while(iter.hasNext()) {
+        while (iter.hasNext()) {
             iter.next();
             count++;
         }
