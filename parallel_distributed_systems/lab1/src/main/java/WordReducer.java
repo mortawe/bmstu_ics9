@@ -12,9 +12,7 @@ public class WordReducer extends Reducer<Text, IntWritable, Text, LongWritable> 
             IOException, InterruptedException {
         long count = 0;
         Iterator iter = values.iterator();
-        for (; iter.hasNext(); count++, iter.next() ;
-
-){
+        for (; iter.hasNext(); count++, iter.next()) {
         }
         context.write(key, new LongWritable(count));
     }
