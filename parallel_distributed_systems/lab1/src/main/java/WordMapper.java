@@ -8,8 +8,8 @@ public class WordMapper extends Mapper<LongWritable, Text, Text, IntWritable> {
     @Override
     protected void map(LongWritable key, Text value, Context context) throws IOException,
             InterruptedException {
-        String line = value.toString();
-        String[] words = line.replaceAll("[^a-zA-Z0-9а-яА-Я]", " ").toLowerCase().split(" ");
+        String[] words = value.toString().replaceAll("[^a-zA-Z0-9а-яА-Я]", " ")
+                .toLowerCase().split(" ");
         for (String word : words) {
             context.write(new Text(word), new IntWritable(1));
         }
