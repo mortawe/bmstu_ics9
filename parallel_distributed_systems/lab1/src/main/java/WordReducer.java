@@ -11,8 +11,8 @@ public class WordReducer extends Reducer<Text, IntWritable, Text, LongWritable> 
     protected void reduce(Text key, Iterable<IntWritable> values, Context context) throws
             IOException, InterruptedException {
         long count = 0;
-        Iterator iter = values.iterator();
-        for (; iter.hasNext(); count++, iter.next()) {
+        for (IntWritable value : values) {
+            count++;
         }
         context.write(key, new LongWritable(count));
     }
