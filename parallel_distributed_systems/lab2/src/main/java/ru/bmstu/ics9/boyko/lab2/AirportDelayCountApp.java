@@ -15,10 +15,11 @@ public class AirportDelayCountApp {
             System.exit(-1);
         }
         Job job = Job.getInstance();
-        job.setJarByClass(WordCountApp.class);
+        job.setJarByClass(AirportDelayCountApp.class);
         job.setJobName("Word count");
         FileInputFormat.addInputPath(job, new Path(args[0]));
         FileOutputFormat.setOutputPath(job, new Path(args[1]));
+
         job.setMapperClass(WordMapper.class);
         job.setReducerClass(WordReducer.class);
         job.setOutputKeyClass(Text.class);
