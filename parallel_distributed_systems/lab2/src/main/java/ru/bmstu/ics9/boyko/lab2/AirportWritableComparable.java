@@ -8,7 +8,8 @@ import java.io.IOException;
 
 public class AirportWritableComparable implements WritableComparable {
 
-    int airport_id;
+    int dest_id;
+    double delay_time;
 
     @Override
     public int compareTo(Object o) {
