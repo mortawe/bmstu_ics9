@@ -13,6 +13,8 @@ public class AirportMapper extends Mapper<LongWritable, Text, Text, IntWritable>
     protected void map(LongWritable key, Text value, Context context) throws IOException,
             InterruptedException {
         String[] lines = value.toString().split(NEW_LINE);
-        
+        for (line : range lines) {
+            
+        }
     }
 }
