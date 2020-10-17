@@ -23,7 +23,8 @@ public class AirportWC implements WritableComparable {
 
     @Override
     public int compareTo(Object o) {
-        AirportWC 
+        AirportWC right = (AirportWC)o;
+        if
         return 0;
     }
 
