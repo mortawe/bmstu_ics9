@@ -8,7 +8,7 @@ import org.apache.hadoop.yarn.webapp.hamlet.Hamlet;
 
 import java.io.IOException;
 
-public class AirportMapper extends Mapper<LongWritable, Text, AirportWC, AirportWritable> {
+public class AirportMapper extends Mapper<LongWritable, Text, AirportWC, IntWritable> {
     public static final String NEW_LINE = "\n";
 
     @Override
@@ -18,9 +18,8 @@ public class AirportMapper extends Mapper<LongWritable, Text, AirportWC, Airport
         for (String line : lines) {
             AirportWC flight = new AirportWC(line);
             if (!flight.cancelled && flight.delay_time > 0) {
-                context.write(flight, );
+                context.write(flight, new IntWritable(1));
             }
         }
-
     }
 }
