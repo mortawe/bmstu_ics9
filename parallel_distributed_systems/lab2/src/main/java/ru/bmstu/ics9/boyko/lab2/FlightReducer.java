@@ -8,6 +8,6 @@ import java.io.IOException;
 public class FlightReducer extends Reducer <FlightWC, IntWritable, FlightWC, IntWritable> {
     @Override
     protected void reduce(FlightWC key, Iterable<IntWritable> values, Context context) throws IOException, InterruptedException {
-        
+
     }
 }
