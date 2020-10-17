@@ -10,6 +10,7 @@ import java.io.IOException;
 public class AirportWC implements WritableComparable {
     public static final int DEST_ROW_NUM = 14;
     public static final int DELAY_ROW_NUM = 17;
+    public static final string 
     int dest_id;
     float delay_time;
 
