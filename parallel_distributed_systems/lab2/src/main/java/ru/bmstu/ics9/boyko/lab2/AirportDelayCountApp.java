@@ -22,6 +22,7 @@ public class AirportDelayCountApp {
 
         job.setMapperClass(FlightMapper.class);
         job.setReducerClass(AirportReducer.class);
+        job.setPartitionerClass(FlightPartitioner.class);
         job.setOutputKeyClass(Text.class);
         job.setOutputValueClass(IntWritable.class);
         job.setNumReduceTasks(2);
