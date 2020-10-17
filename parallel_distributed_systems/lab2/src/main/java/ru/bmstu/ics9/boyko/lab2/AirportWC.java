@@ -49,11 +49,15 @@ public class AirportWC implements WritableComparable {
 
     @Override
     public void write(DataOutput dataOutput) throws IOException {
-
+        dataOutput.writeInt(dest_id);
+        dataOutput.writeFloat(delay_time);
+        dataOutput.writeBoolean(cancelled);
     }
 
     @Override
     public void readFields(DataInput dataInput) throws IOException {
-
+        dest_id = dataInput.readInt();
+        delay_time = dataInput.readFloat();
+        cancelled = dataInput.readBoolean();
     }
 }
