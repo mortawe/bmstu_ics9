@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.util.Objects;
 
 // :D
-public class AirportWC implements WritableComparable {
+public class FlightWC implements WritableComparable {
     public static final int DEST_ROW_NUM = 14;
     public static final int DELAY_ROW_NUM = 17;
     public static final int CANCELLED_ROW = 19;
@@ -18,7 +18,7 @@ public class AirportWC implements WritableComparable {
     float delay_time;
     boolean cancelled;
 
-    public AirportWC(String value) {
+    public FlightWC(String value) {
         String[] rows = value.split(COMMA);
         this.dest_id = Integer.parseInt(rows[DEST_ROW_NUM]);
         // negative delay is not delay at all
@@ -31,7 +31,7 @@ public class AirportWC implements WritableComparable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        AirportWC airportWC = (AirportWC) o;
+        FlightWC airportWC = (FlightWC) o;
         return dest_id == airportWC.dest_id &&
                 Float.compare(airportWC.delay_time, delay_time) == 0 &&
                 cancelled == airportWC.cancelled;
