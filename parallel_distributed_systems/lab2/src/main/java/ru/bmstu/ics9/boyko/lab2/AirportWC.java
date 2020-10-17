@@ -18,8 +18,9 @@ public class AirportWC implements WritableComparable {
     public AirportWC(String value) {
         String[] rows = value.split(COMMA);
         this.dest_id = Integer.parseInt(rows[DEST_ROW_NUM]);
-        this.delay_time = Float.parseFloat(rows[DELAY_ROW_NUM]) > 0 ? Float.parseFloat(rows[DELAY_ROW_NUM]) : -1;
         // negative delay is not delay at all
+        // -1 is value for these flights
+        this.delay_time = Float.parseFloat(rows[DELAY_ROW_NUM]) > 0 ? Float.parseFloat(rows[DELAY_ROW_NUM]) : -1;
     }
 
     @Override
