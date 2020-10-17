@@ -7,12 +7,13 @@ import java.io.DataOutput;
 import java.io.IOException;
 // :D
 public class AirportWC implements WritableComparable {
-
+    public static final DEST_ROW_NUM =
     int dest_id;
     double delay_time;
 
-    public AirportWC(){
-
+    public AirportWC(String value){
+        String[] rows = value.split(",");
+        this.dest_id = rows[]
     }
 
     @Override
