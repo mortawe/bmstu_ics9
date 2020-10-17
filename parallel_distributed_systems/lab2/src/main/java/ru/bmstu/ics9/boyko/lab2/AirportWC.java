@@ -5,6 +5,7 @@ import org.apache.hadoop.io.WritableComparable;
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
+
 // :D
 public class AirportWC implements WritableComparable {
     public static final int DEST_ROW_NUM = 14;
@@ -12,14 +13,14 @@ public class AirportWC implements WritableComparable {
     int dest_id;
     float delay_time;
 
-    public AirportWC(String value){
+    public AirportWC(String value) {
         String[] rows = value.split(",");
         this.dest_id = Integer.parseInt(rows[DEST_ROW_NUM]);
         float delay = Float.parseFloat(rows[DELAY_ROW_NUM]);
-        if (delay >= 0) {
+        if (delay == 0) {
             this.delay_time = delay;
         } else {
-            delay = -1;
+            this.delay_time = -1;
         }
     }
 
