@@ -9,7 +9,7 @@ import java.io.IOException;
 public class AirportWritableComparable implements WritableComparable {
 
     int cancelled;
-    
+    int dest
 
     @Override
     public int compareTo(Object o) {
