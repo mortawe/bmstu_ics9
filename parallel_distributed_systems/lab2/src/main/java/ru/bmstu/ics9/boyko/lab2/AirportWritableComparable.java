@@ -7,8 +7,8 @@ import java.io.DataOutput;
 import java.io.IOException;
 
 public class AirportWritableComparable implements WritableComparable {
-
-    int 
+    enum BOOLS<int> = {0,1}
+    int cancelled
 
     @Override
     public int compareTo(Object o) {
