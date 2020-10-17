@@ -5,11 +5,15 @@ import org.apache.hadoop.io.WritableComparable;
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
-
-public class AirportWritableComparable implements WritableComparable {
+// :D
+public class AirportWC implements WritableComparable {
 
     int dest_id;
     double delay_time;
+
+    public AirportWC(){
+
+    }
 
     @Override
     public int compareTo(Object o) {
