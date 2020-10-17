@@ -13,7 +13,8 @@ public class AirportWC implements WritableComparable {
 
     public AirportWC(String value){
         String[] rows = value.split(",");
-        this.dest_id = int(rows[DEST_ROW_NUM])
+        this.dest_id = Integer.parseInt(rows[DEST_ROW_NUM]);
+        
     }
 
     @Override
