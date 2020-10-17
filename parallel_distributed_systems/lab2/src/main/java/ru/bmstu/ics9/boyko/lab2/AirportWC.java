@@ -19,7 +19,6 @@ public class AirportWC implements WritableComparable {
         String[] rows = value.split(COMMA);
         this.dest_id = Integer.parseInt(rows[DEST_ROW_NUM]);
         this.delay_time = Float.parseFloat(rows[DELAY_ROW_NUM]);
-
     }
 
     @Override
