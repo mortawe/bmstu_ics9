@@ -10,6 +10,7 @@ import java.io.IOException;
 public class AirportWC implements WritableComparable {
     public static final int DEST_ROW_NUM = 14;
     public static final int DELAY_ROW_NUM = 17;
+    public static final int CANCELLED_ROW = 
     public static final String COMMA = ",";
 
     int dest_id;
@@ -21,6 +22,7 @@ public class AirportWC implements WritableComparable {
         // negative delay is not delay at all
         // -1 is value for these flights
         this.delay_time = Float.parseFloat(rows[DELAY_ROW_NUM]) > 0 ? Float.parseFloat(rows[DELAY_ROW_NUM]) : -1;
+        if
     }
 
     @Override
