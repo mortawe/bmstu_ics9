@@ -1,4 +1,4 @@
 package ru.bmstu.ics9.boyko.lab2;
 
-public class GroupingComparator {
+public class DelayGroupingComparator extends Grouping {
 }
