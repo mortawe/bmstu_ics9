@@ -22,7 +22,7 @@ public class AirportMapper extends Mapper<LongWritable, Text, DelayWritableCompa
         for (String line : lines) {
             String[] parsedAirport = line.split(COMMA, 1);
             String codeStr = parsedAirport[CODE_POS].replaceAll(NOT_NUMBERS_REGEX, EMPTY_STRING);
-            if (codeStr.equals("")) {
+            if (codeStr.isEmpty()) {
                 return;
             }
             int code = Integer.parseInt(codeStr);
