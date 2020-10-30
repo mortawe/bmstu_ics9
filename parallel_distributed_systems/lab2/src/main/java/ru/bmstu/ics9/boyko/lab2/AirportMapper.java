@@ -12,7 +12,6 @@ public class AirportMapper extends Mapper<LongWritable, Text, DelayWritableCompa
     private static final String NOT_NUMBERS_REGEX = "[^0-9]+";
     private static final String EMPTY_STRING = "";
 
-
     private static final int CODE_POS = 0;
     private static final int DESCRIPTION_POS = 1;
 
@@ -23,7 +22,6 @@ public class AirportMapper extends Mapper<LongWritable, Text, DelayWritableCompa
         for (String line : lines) {
             String[] parsedAirport = line.split(COMMA);
             String codeStr = parsedAirport[CODE_POS].replaceAll(NOT_NUMBERS_REGEX, EMPTY_STRING);
-            ;
             if (codeStr.equals("")) {
                 return;
             }
