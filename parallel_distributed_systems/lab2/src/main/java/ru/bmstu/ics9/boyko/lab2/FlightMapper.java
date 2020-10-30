@@ -11,7 +11,7 @@ import java.io.IOException;
 public class FlightMapper extends Mapper <LongWritable, Text, DelayWritableComparable, IntWritable>{
     private static final String NEW_LINE  = "\n";
     private static final String COMMA = ",";
-    private static final int NOT_NUMBERS_REGEX = "[0-9]";
+    private static final String NOT_NUMBERS_REGEX = "[^0-9]+";
 
     private static final int DEST_AIRPORT_ID = 14;
     @Override
@@ -19,7 +19,7 @@ public class FlightMapper extends Mapper <LongWritable, Text, DelayWritableCompa
         String[] lines = value.toString().split(NEW_LINE);
         for (String line : lines) {
             String[] parsedFlight = line.split(COMMA);
-            Integer destAirportID =  Integer.parseInt(parsedFlight[DEST_AIRPORT_ID]);
+            Integer destAirportID =  Integer.parseInt(parsedFlight[DEST_AIRPORT_ID].replaceAll(NOT_NUMBERS_REGEX, ""));
             Float delay =  Float.parseFloat(parsedFlight[DEST_AIRPORT_ID]);
 
         }
