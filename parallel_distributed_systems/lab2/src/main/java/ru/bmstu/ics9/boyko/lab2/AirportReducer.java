@@ -12,10 +12,10 @@ public class AirportReducer extends Reducer<DelayWritableComparable, Text, Text,
         float max = DEFAULT_COUNTERS_VALUE, min = DEFAULT_COUNTERS_VALUE, avg = 0;
         int flightCount = 0;
         boolean isFirstLine = true;
-        Text airportName = null;
+        String airportName = "";
         for (Text value: values) {
             if (isFirstLine) {
-                airportName = value;
+                airportName = value.toString();
                 continue;
             }
             float delay = Float.parseFloat(value.toString());
@@ -32,6 +32,6 @@ public class AirportReducer extends Reducer<DelayWritableComparable, Text, Text,
 
         String results = String.format("min : %f; max : %f; avg: %f", min, max, avg);
 
-        context.write(airportName, new Text(results));
+        context.write(new Text(airportName), new Text(results));
     }
 }
