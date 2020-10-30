@@ -1,4 +1,4 @@
 package ru.bmstu.ics9.boyko.lab2;
 
-public class WritableComparable {
+public class WritableComparable extends org.apache.hadoop.io.WritableComparable < {
 }
