@@ -9,6 +9,8 @@ import java.io.IOException;
 public class AirportMapper extends Mapper<LongWritable, Text, DelayWritableComparable, Text> {
     private static final String NEW_LINE = "\n";
     private static final String COMMA = ",";
+    private static final String BRACKETS = "\"";
+
     private static final String NOT_NUMBERS_REGEX = "[^0-9]+";
     private static final String EMPTY_STRING = "";
 
@@ -20,13 +22,13 @@ public class AirportMapper extends Mapper<LongWritable, Text, DelayWritableCompa
         String[] lines = value.toString().split(NEW_LINE);
 
         for (String line : lines) {
-            String[] parsedAirport = line.split(COMMA, 2);
+            String[] parsedAirport = line.split(COMMA);
             String codeStr = parsedAirport[CODE_POS].replaceAll(NOT_NUMBERS_REGEX, EMPTY_STRING);
             if (codeStr.isEmpty()) {
                 return;
             }
             int code = Integer.parseInt(codeStr);
-            String description = parsedAirport[DESCRIPTION_POS];
+            String description = parsedAirport[DESCRIPTION_POS].replaceAll(BRACKETS, EMPTY_STRING);;
             if (code <= 0) {
                 continue;
             }
