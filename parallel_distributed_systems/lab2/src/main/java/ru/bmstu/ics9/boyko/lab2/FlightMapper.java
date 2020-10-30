@@ -1,7 +1,5 @@
 package ru.bmstu.ics9.boyko.lab2;
 
-import com.sun.org.apache.bcel.internal.generic.NEW;
-import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper;
@@ -14,21 +12,25 @@ public class FlightMapper extends Mapper<LongWritable, Text, DelayWritableCompar
     private static final String NOT_NUMBERS_REGEX = "[^0-9]+";
     private static final String EMPTY_STRING = "";
 
-    private static final int DEST_AIRPORT_ID = 14;
+    private static final int DEST_AIRPORT_ID_POS = 14;
+    private static final int DELAY_POS = 17;
 
     @Override
     protected void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
         String[] lines = value.toString().split(NEW_LINE);
         for (String line : lines) {
             String[] parsedFlight = line.split(COMMA);
-            Integer destAirportID = Integer.parseInt(parsedFlight[DEST_AIRPORT_ID].replaceAll(NOT_NUMBERS_REGEX, EMPTY_STRING));
-            String delay = parsedFlight[DEST_AIRPORT_ID];
+            Integer destAirportID = Integer.parseInt(parsedFlight[DEST_AIRPORT_ID_POS].replaceAll(NOT_NUMBERS_REGEX, EMPTY_STRING));
+            String delayText = parsedFlight[DELAY_POS];
             if (destAirportID <= 0) {
                 // not a valid string
                 continue;
             }
-
-            context.write(new DelayWritableComparable(destAirportID, DelayWritableComparable.STATE_FLIGHT), new Text(delay));
+            Float delayFloat = Float.parseFloat(delayText);
+            if (delayFloat <= 0) {
+                continue;
+            }
+            context.write(new DelayWritableComparable(destAirportID, DelayWritableComparable.STATE_FLIGHT), new Text(delayText));
         }
     }
 }
