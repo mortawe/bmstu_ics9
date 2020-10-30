@@ -19,6 +19,7 @@ public class AirportDelayCountApp {
         job.setJarByClass(AirportDelayCountApp.class);
         job.setJobName("AirportDelayCount");
         FileInputFormat.addInputPath(job, new Path(args[0]));
+
         FileOutputFormat.setOutputPath(job, new Path(args[1]));
 
         job.setMapperClass(FlightMapper.class);
