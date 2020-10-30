@@ -20,7 +20,8 @@ public class FlightMapper extends Mapper<LongWritable, Text, DelayWritableCompar
         String[] lines = value.toString().split(NEW_LINE);
         for (String line : lines) {
             String[] parsedFlight = line.split(COMMA);
-            int destAirportID = Integer.parseInt(parsedFlight[DEST_AIRPORT_ID_POS].replaceAll(NOT_NUMBERS_REGEX, EMPTY_STRING));
+            int destAirportID = Integer.parseInt(parsedFlight[DEST_AIRPORT_ID_POS].
+                    replaceAll(NOT_NUMBERS_REGEX, EMPTY_STRING));
             String delayText = parsedFlight[DELAY_POS];
             if (destAirportID <= 0) {
                 // not a valid string
@@ -30,7 +31,8 @@ public class FlightMapper extends Mapper<LongWritable, Text, DelayWritableCompar
             if (delayFloat <= 0) {
                 continue;
             }
-            context.write(new DelayWritableComparable(destAirportID, DelayWritableComparable.STATE_FLIGHT), new Text(delayText));
+            context.write(new DelayWritableComparable(destAirportID, DelayWritableComparable.STATE_FLIGHT),
+                    new Text(delayText));
         }
     }
 }
