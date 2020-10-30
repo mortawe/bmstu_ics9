@@ -19,8 +19,8 @@ public class FlightMapper extends Mapper <LongWritable, Text, DelayWritableCompa
         for (String line : lines) {
             String[] parsedFlight = line.split(COMMA);
             Integer destAirportID =  Integer.parseInt(parsedFlight[DEST_AIRPORT_ID]);
-            Integer delay =  Integer.parseInt(parsedFlight[DEST_AIRPORT_ID]);
-
+            Float delay =  Float.parseFloat(parsedFlight[DEST_AIRPORT_ID]);
+            
         }
     }
 }
