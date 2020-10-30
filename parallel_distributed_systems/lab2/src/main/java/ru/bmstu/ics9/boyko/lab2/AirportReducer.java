@@ -16,6 +16,7 @@ public class AirportReducer extends Reducer<DelayWritableComparable, Text, Text,
         for (Text value: values) {
             if (isFirstLine) {
                 airportName = value.toString();
+                isFirstLine = false;
                 continue;
             }
             float delay = Float.parseFloat(value.toString());
