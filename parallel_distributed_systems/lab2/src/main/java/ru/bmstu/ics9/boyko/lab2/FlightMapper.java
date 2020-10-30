@@ -31,6 +31,9 @@ public class FlightMapper extends Mapper<LongWritable, Text, DelayWritableCompar
                 // not a valid string
                 continue;
             }
+            if (delayText.isEmpty()) {
+                return;
+            }
             float delayFloat = Float.parseFloat(delayText);
             if (delayFloat <= 0) {
                 continue;
