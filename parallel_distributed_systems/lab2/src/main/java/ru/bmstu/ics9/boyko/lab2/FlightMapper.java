@@ -8,7 +8,7 @@ import org.apache.hadoop.mapreduce.Mapper;
 
 import java.io.IOException;
 
-public class FlightMapper extends Mapper <LongWritable, Text, DelayWritableComparable, IntWritable>{
+public class FlightMapper extends Mapper <LongWritable, Text, DelayWritableComparable, Text>{
     private static final String NEW_LINE  = "\n";
     private static final String COMMA = ",";
     private static final String NOT_NUMBERS_REGEX = "[^0-9]+";
@@ -27,7 +27,7 @@ public class FlightMapper extends Mapper <LongWritable, Text, DelayWritableCompa
                 continue;
             }
 
-            context.write(new DelayWritableComparable(destAirportID, delay), );
+            context.write(new DelayWritableComparable(destAirportID, delay), new Text(String.valueOf(delay)));
         }
     }
 }
