@@ -7,7 +7,9 @@ import java.io.DataOutput;
 import java.io.IOException;
 
 public class DelayWritableComparable implements WritableComparable {
-    
+
+    int AirportID; 
+    int state; // 0 for airports; 1 for flights
 
     @Override
     public int compareTo(Object o) {
