@@ -22,9 +22,9 @@ public class AirportDelayCountApp {
 
         FileOutputFormat.setOutputPath(job, new Path(args[1]));
 
-        job.setMapperClass(FlightMapper.class);
-        job.setReducerClass(AirportReducer.class);
-        job.setPartitionerClass(FlightPartitioner.class);
+//        job.setMapperClass(FlightMapper.class);
+//        job.setReducerClass(AirportReducer.class);
+//        job.setPartitionerClass(FlightPartitioner.class);
         job.setOutputKeyClass(Text.class);
         job.setOutputValueClass(IntWritable.class);
         job.setNumReduceTasks(2);
