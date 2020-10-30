@@ -25,7 +25,7 @@ public class AirportMapper extends Mapper<LongWritable, Text, DelayWritableCompa
             if (code <= 0) {
                 continue;
             }
-            context.write(new Key);
+            context.write(new DelayWritableComparable(code, DelayWritableComparable.STATE_AIRPORT), Text(description));
         }
 
     }
