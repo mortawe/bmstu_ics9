@@ -13,19 +13,17 @@ import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
 public class AirportDelayCountApp {
     public static void main(String[] args) throws Exception {
-        if (args.length != 2) {
-            System.err.println("Usage: WordCountApp <input path> <output path>");
+        if (args.length != 3) {
+            System.err.println("Usage: AirportDelayCount <input path flights csv> <input path airports csv> <output path>");
             System.exit(-1);
         }
         Job job = Job.getInstance();
         job.setJarByClass(AirportDelayCountApp.class);
         job.setJobName("AirportDelayCount");
-        FileInputFormat.addInputPath(job, new Path(args[0]));
+        MultipleInputs.addInputPath(job, new Path(args[0]), TextInputFormat.class, FlightMapper.class);
+        MultipleInputs.addInputPath(job, new Path(args[1]), TextInputFormat.class, AirportMapper.class);
 
-        FileOutputFormat.setOutputPath(job, new Path(args[1]));
-
-        MultipleInputs.addInputPath(job, new Path(args[0]), TextInputFormat.class,);
-//        job.setMapperClass(FlightMapper.class);
+        //        job.setMapperClass(FlightMapper.class);
 //        job.setReducerClass(AirportReducer.class);
 //        job.setPartitionerClass(FlightPartitioner.class);
         job.setOutputKeyClass(Text.class);
