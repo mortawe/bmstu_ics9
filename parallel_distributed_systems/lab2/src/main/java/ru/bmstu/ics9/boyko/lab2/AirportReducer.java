@@ -8,6 +8,8 @@ import java.io.IOException;
 public class AirportReducer extends Reducer<DelayWritableComparable, Text, Text, Text> {
     @Override
     protected void reduce(DelayWritableComparable key, Iterable<Text> values, Context context) throws IOException, InterruptedException {
-        super.reduce(key, values, context);
+        for (Text value: values) {
+            
+        }
     }
 }
