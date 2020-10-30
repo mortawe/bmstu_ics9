@@ -15,7 +15,7 @@ public class DelayWritableComparable implements WritableComparable {
         this.airportID = airportID;
         this.state = state;
     }
-    
+
     @Override
     public int compareTo(Object o) {
         return 0;
