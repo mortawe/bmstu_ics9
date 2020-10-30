@@ -22,7 +22,12 @@ public class FlightMapper extends Mapper <LongWritable, Text, DelayWritableCompa
             String[] parsedFlight = line.split(COMMA);
             Integer destAirportID =  Integer.parseInt(parsedFlight[DEST_AIRPORT_ID].replaceAll(NOT_NUMBERS_REGEX, EMPTY_STRING));
             Float delay =  Float.parseFloat(parsedFlight[DEST_AIRPORT_ID]);
+            if (destAirportID <= 0) {
+                // not a valid string
+                continue;
+            }
 
+            context.write(new DelayWritableComparable(destAirportID, delay), );
         }
     }
 }
