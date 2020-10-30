@@ -8,7 +8,7 @@ import java.io.IOException;
 
 public class AirportMapper extends Mapper<LongWritable, Text, DelayWritableComparable, Text> {
     private static final String NEW_LINE = "\n";
-    private static final String COMMA = "";
+    private static final String COMMA = ",";
     private static final String NOT_NUMBERS_REGEX = "[^0-9]+";
     private static final String EMPTY_STRING = "";
 
