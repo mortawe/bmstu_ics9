@@ -1,4 +1,11 @@
 package ru.bmstu.ics9.boyko.lab2;
 
-public class AirportPartitioner {
+import org.apache.hadoop.io.Text;
+import org.apache.hadoop.mapreduce.Partitioner;
+
+public class AirportPartitioner extends Partitioner <DelayWritableComparable, Text> {
+    @Override
+    public int getPartition(DelayWritableComparable delayWritableComparable, Text text, int i) {
+        return 0;
+    }
 }
