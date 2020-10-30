@@ -25,10 +25,10 @@ public class AirportDelayCountApp {
         MultipleInputs.addInputPath(job, new Path(args[1]), TextInputFormat.class, AirportMapper.class);
         FileOutputFormat.setOutputPath(job, new Path(args[2]));
 
-        job.setReducerClass(AirportReducer.class);
-        job.setPartitionerClass(FlightPartitioner.class);
-        job.setOutputKeyClass(Text.class);
-        job.setOutputValueClass(IntWritable.class);
+//        job.setReducerClass(AirportReducer.class);
+//        job.setPartitionerClass(FlightPartitioner.class);
+        job.setOutputKeyClass(DelayWritableComparable.class);
+        job.setOutputValueClass(Text.class);
         job.setNumReduceTasks(2);
         System.exit(job.waitForCompletion(true) ? 0 : 1);
     }

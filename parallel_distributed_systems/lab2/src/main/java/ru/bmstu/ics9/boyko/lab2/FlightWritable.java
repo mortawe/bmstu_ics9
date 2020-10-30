@@ -7,10 +7,7 @@ import java.io.DataOutput;
 import java.io.IOException;
 
 public class FlightWritable implements Writable {
-
-    public FlightWritable() {
-    }
-
+    private int 
     @Override
     public void write(DataOutput dataOutput) throws IOException {
         dataOutput.
