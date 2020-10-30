@@ -12,11 +12,21 @@ public class AirportMapper extends Mapper<LongWritable, Text, DelayWritableCompa
 
     private static final int CODE_POS = 0;
     private static final int DESCRIPTION_POS = 1;
-    
+
     @Override
     protected void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
         String[] lines = value.toString().split(NEW_LINE);
 
+        for (String line: lines){
+            String[] parsedAirport = line.split(COMMA);
+
+            int code = Integer.parseInt(parsedAirport[CODE_POS]);
+            String  description = parsedAirport[DESCRIPTION_POS];
+            if (code <= 0) {
+                continue;
+            }
+            context.write(new Key);
+        }
 
     }
 }
