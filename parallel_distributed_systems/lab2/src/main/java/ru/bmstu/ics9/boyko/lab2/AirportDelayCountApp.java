@@ -5,6 +5,7 @@ import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
+import org.apache.hadoop.mapreduce.lib.input.MultipleInputs;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
 
@@ -16,8 +17,9 @@ public class AirportDelayCountApp {
         }
         Job job = Job.getInstance();
         job.setJarByClass(AirportDelayCountApp.class);
-        job.setJobName("Word count");
+        job.setJobName("AirportDelayCount");
         FileInputFormat.addInputPath(job, new Path(args[0]));
+        MultipleInputs.addInputPath(job, new);
         FileOutputFormat.setOutputPath(job, new Path(args[1]));
 
         job.setMapperClass(FlightMapper.class);
