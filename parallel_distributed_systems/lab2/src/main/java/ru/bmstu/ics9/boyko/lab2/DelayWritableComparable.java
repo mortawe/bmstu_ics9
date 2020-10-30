@@ -11,7 +11,6 @@ public class DelayWritableComparable implements WritableComparable<DelayWritable
     public static final Integer STATE_AIRPORT = 0;
     public static final Integer STATE_FLIGHT = 1;
 
-
     int airportID;
     int state; // 0 for airports; 1 for flights
 
