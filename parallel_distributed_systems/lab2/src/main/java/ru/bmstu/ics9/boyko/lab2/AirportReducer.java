@@ -29,6 +29,9 @@ public class AirportReducer extends Reducer<DelayWritableComparable, Text, Text,
             avg += delay;
             flightCount++;
         }
+        if (flightCount <= 0) {
+            return;
+        }
         avg /= flightCount;
 
         String results = String.format("min : %f; max : %f; avg: %f", min, max, avg);

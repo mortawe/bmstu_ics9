@@ -28,11 +28,10 @@ public class AirportMapper extends Mapper<LongWritable, Text, DelayWritableCompa
                 return;
             }
             int code = Integer.parseInt(codeStr);
-            String description = parsedAirport[DESCRIPTION_POS].replaceAll(BRACKETS, EMPTY_STRING);;
+            String description = parsedAirport[DESCRIPTION_POS].replaceAll(BRACKETS, EMPTY_STRING);
             if (code <= 0) {
                 continue;
             }
-            System.out.println("name " + description + " id " + codeStr + "\n");
 
             context.write(new DelayWritableComparable(code, DelayWritableComparable.STATE_AIRPORT),
                     new Text(description));
