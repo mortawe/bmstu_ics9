@@ -20,12 +20,13 @@ public class AirportDelayCountApp {
         Job job = Job.getInstance();
         job.setJarByClass(AirportDelayCountApp.class);
         job.setJobName("AirportDelayCount");
+
         MultipleInputs.addInputPath(job, new Path(args[0]), TextInputFormat.class, FlightMapper.class);
         MultipleInputs.addInputPath(job, new Path(args[1]), TextInputFormat.class, AirportMapper.class);
+        FileOutputFormat.setOutputPath(job, new Path(args[2]));
 
-        //        job.setMapperClass(FlightMapper.class);
-//        job.setReducerClass(AirportReducer.class);
-//        job.setPartitionerClass(FlightPartitioner.class);
+        job.setReducerClass(AirportReducer.class);
+        job.setPartitionerClass(FlightPartitioner.class);
         job.setOutputKeyClass(Text.class);
         job.setOutputValueClass(IntWritable.class);
         job.setNumReduceTasks(2);
