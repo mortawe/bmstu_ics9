@@ -22,6 +22,7 @@ public class AirportDelayCountApp {
 
         FileOutputFormat.setOutputPath(job, new Path(args[1]));
 
+        MultipleInputs.addInputPath(job, );
 //        job.setMapperClass(FlightMapper.class);
 //        job.setReducerClass(AirportReducer.class);
 //        job.setPartitionerClass(FlightPartitioner.class);
