@@ -1,2 +1,4 @@
-package ru.bmstu.ics9.boyko.lab2;public class AirportMapper {
+package ru.bmstu.ics9.boyko.lab2;
+
+public class AirportMapper {
 }
