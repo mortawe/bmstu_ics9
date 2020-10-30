@@ -5,7 +5,7 @@ import org.apache.hadoop.io.WritableComparator;
 
 public class DelayGroupingComparator extends WritableComparator {
     @Override
-    public int compare(Object a, Object b) {
+    public int compare(WritableComparable a, WritableComparable b) {
         DelayWritableComparable left = (DelayWritableComparable) a;
         DelayWritableComparable right = (DelayWritableComparable) b;
 
