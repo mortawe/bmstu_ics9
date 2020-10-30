@@ -3,6 +3,7 @@ package ru.bmstu.ics9.boyko.lab2;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.Text;
+import org.apache.hadoop.mapreduce.InputFormat;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.input.MultipleInputs;
@@ -22,7 +23,7 @@ public class AirportDelayCountApp {
 
         FileOutputFormat.setOutputPath(job, new Path(args[1]));
 
-        MultipleInputs.addInputPath(job, );
+        MultipleInputs.addInputPath(job, new Path(args[0]), InputFormat.class,);
 //        job.setMapperClass(FlightMapper.class);
 //        job.setReducerClass(AirportReducer.class);
 //        job.setPartitionerClass(FlightPartitioner.class);
