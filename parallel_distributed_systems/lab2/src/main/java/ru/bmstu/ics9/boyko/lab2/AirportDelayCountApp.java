@@ -7,6 +7,7 @@ import org.apache.hadoop.mapreduce.InputFormat;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.input.MultipleInputs;
+import org.apache.hadoop.mapreduce.lib.input.TextInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
 
@@ -23,7 +24,7 @@ public class AirportDelayCountApp {
 
         FileOutputFormat.setOutputPath(job, new Path(args[1]));
 
-        MultipleInputs.addInputPath(job, new Path(args[0]), InputFormat.class,);
+        MultipleInputs.addInputPath(job, new Path(args[0]), TextInputFormat.class,);
 //        job.setMapperClass(FlightMapper.class);
 //        job.setReducerClass(AirportReducer.class);
 //        job.setPartitionerClass(FlightPartitioner.class);
