@@ -6,6 +6,6 @@ import org.apache.hadoop.mapreduce.Partitioner;
 public class AirportPartitioner extends Partitioner <DelayWritableComparable, Text> {
     @Override
     public int getPartition(DelayWritableComparable delayWritableComparable, Text text, int i) {
-        return 0;
+        return (delayWritableComparable.airportID)
     }
 }
