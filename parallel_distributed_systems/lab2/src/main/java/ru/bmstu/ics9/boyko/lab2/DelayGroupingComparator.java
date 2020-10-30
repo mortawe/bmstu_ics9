@@ -1,4 +1,6 @@
 package ru.bmstu.ics9.boyko.lab2;
 
-public class DelayGroupingComparator extends Grouping {
+import org.apache.hadoop.io.RawComparator;
+
+public class DelayGroupingComparator implements RawComparator {
 }
