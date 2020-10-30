@@ -7,16 +7,18 @@ import java.io.DataOutput;
 import java.io.IOException;
 
 
-
-public class DelayWritableComparable implements WritableComparable <DelayWritableComparable> {
+public class DelayWritableComparable implements WritableComparable<DelayWritableComparable> {
     public static final Integer STATE_AIRPORT = 0;
     public static final Integer STATE_FLIGHT = 1;
 
-    public DelayWritableComparable() {
-    }
 
     int airportID;
     int state; // 0 for airports; 1 for flights
+
+    public DelayWritableComparable() {
+        airportID = 0;
+        state = 0;
+    }
 
     public DelayWritableComparable(int airportID, int state) {
         this.airportID = airportID;
