@@ -20,7 +20,7 @@ public class AirportMapper extends Mapper<LongWritable, Text, DelayWritableCompa
         for (String line: lines){
             String[] parsedAirport = line.split(COMMA);
             String codeStr = parsedAirport[CODE_POS];
-            if (codeStr == "") {
+            if (codeStr.equals("")) {
                 return;
             }
             int code = Integer.parseInt(codeStr);
