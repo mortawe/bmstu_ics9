@@ -11,12 +11,16 @@ import java.io.IOException;
 public class FlightMapper extends Mapper <LongWritable, Text, DelayWritableComparable, IntWritable>{
     private static final String NEW_LINE  = "\n";
     private static final String COMMA = ",";
+
+    private static final int DEST_AIRPORT_ID = 14;
     @Override
     protected void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
         String[] lines = value.toString().split(NEW_LINE);
         for (String line : lines) {
             String[] parsedFlight = line.split(COMMA);
-            
+            Integer destAirportID =  Integer.parseInt(parsedFlight[DEST_AIRPORT_ID]);
+            Integer delay =  Integer.parseInt(parsedFlight[DEST_AIRPORT_ID]);
+
         }
     }
 }
