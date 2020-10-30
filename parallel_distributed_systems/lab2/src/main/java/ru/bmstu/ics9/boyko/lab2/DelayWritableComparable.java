@@ -6,7 +6,11 @@ import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
 
+
+
 public class DelayWritableComparable implements WritableComparable {
+    public static final Integer STATE_AIRPORT = 0;
+    public static final Integer STATE_FLIGHT = 1;
 
     int airportID;
     int state; // 0 for airports; 1 for flights
