@@ -30,6 +30,8 @@ public class AirportMapper extends Mapper<LongWritable, Text, DelayWritableCompa
             if (code <= 0) {
                 continue;
             }
+            System.out.println("name " + description + " id " + codeStr + "\n");
+
             context.write(new DelayWritableComparable(code, DelayWritableComparable.STATE_AIRPORT),
                     new Text(description));
         }
