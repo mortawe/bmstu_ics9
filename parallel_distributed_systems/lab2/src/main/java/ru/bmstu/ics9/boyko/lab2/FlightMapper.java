@@ -1,4 +1,6 @@
 package ru.bmstu.ics9.boyko.lab2;
 
-public class FlightMapper {
+import org.apache.hadoop.mapreduce.Mapper;
+
+public class FlightMapper extends Mapper {
 }
