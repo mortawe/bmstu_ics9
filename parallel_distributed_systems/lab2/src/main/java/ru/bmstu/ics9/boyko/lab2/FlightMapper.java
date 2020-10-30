@@ -38,7 +38,7 @@ public class FlightMapper extends Mapper<LongWritable, Text, DelayWritableCompar
             if (delayFloat <= 0) {
                 continue;
             }
-            log.print()
+            println()
             context.write(new DelayWritableComparable(destAirportID, DelayWritableComparable.STATE_FLIGHT),
                     new Text(delayText));
         }
