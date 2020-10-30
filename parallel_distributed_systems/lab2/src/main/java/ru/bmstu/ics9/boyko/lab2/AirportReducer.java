@@ -6,15 +6,16 @@ import org.apache.hadoop.mapreduce.Reducer;
 import java.io.IOException;
 
 public class AirportReducer extends Reducer<DelayWritableComparable, Text, Text, Text> {
-    private static final int DEFAULT_COUNTERS_VALUE = -1;
+    private static final float DEFAULT_COUNTERS_VALUE = -1;
     @Override
     protected void reduce(DelayWritableComparable key, Iterable<Text> values, Context context) throws IOException, InterruptedException {
-        float max = DEFAULT_COUNTERS_VALUE, min = DEFAULT_COUNTERS_VALUE;
+        float max = DEFAULT_COUNTERS_VALUE, min = DEFAULT_COUNTERS_VALUE, avg = 0;
+        int flightCount = 0;
         boolean isFirstLine = true;
-        String airportName = "";
+        Text airportName = null;
         for (Text value: values) {
             if (isFirstLine) {
-                airportName = value.toString();
+                airportName = value;
                 continue;
             }
             float delay = Float.parseFloat(value.toString());
@@ -24,6 +25,13 @@ public class AirportReducer extends Reducer<DelayWritableComparable, Text, Text,
             if (min == DEFAULT_COUNTERS_VALUE || min > delay) {
                 min = delay;
             }
+            avg += delay;
+            flightCount++;
         }
+        avg /= flightCount;
+
+        String results = String.format("min : %f; max : %f; avg: %f", min, max, avg);
+
+        context.write(airportName, new Text(results));
     }
 }

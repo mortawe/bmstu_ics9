@@ -25,7 +25,7 @@ public class AirportDelayCountApp {
         job.setReducerClass(AirportReducer.class);
         job.setPartitionerClass(AirportPartitioner.class);
         job.setGroupingComparatorClass(DelayGroupingComparator.class);
-        job.setOutputKeyClass(DelayWritableComparable.class);
+        job.setOutputKeyClass(Text.class);
         job.setOutputValueClass(Text.class);
         job.setNumReduceTasks(2);
         System.exit(job.waitForCompletion(true) ? 0 : 1);
