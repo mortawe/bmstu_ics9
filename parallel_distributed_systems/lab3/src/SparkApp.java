@@ -1,7 +1,7 @@
 
 
 public class SparkApp {
-    SparkConf conf = new SparkConf().setAppName("lab5");
+    SparkConf conf = new SparkConf().setAppName("lab3");
     JavaSparkContext sc = new JavaSparkContext(conf);
 
     JavaRDD<String> flightsFile = sc.textFile("664600583_T_ONTIME_sample.csv");
