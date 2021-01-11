@@ -365,21 +365,23 @@ uint Statement(string &code, uint current, vector<Token *> &tokens) {
                 current = IfSt(code, current, tokens);
             } else {
                 bool found = true;
+                int before_size = tokens.size();
                 try {
                     current = DefSt(code, current, tokens);
                 }
                 catch (const char *e) {
                     found = false;
+                    tokens.resize(before_size);
                 }
                 if (!found) {
                     found = true;
                     try {
                         current = AssignSt(code, current, tokens);
                         for (; code[current] == ' '; ++current);
-
                     }
                     catch (const char *e) {
                         found = false;
+                        tokens.resize(before_size);
                     }
                     if (!found) {
                         current = SimpleSt(code, current, tokens);
@@ -406,6 +408,7 @@ uint Function_body(string &code, uint current, vector<Token *> &tokens) {
         current++;
         while (code.substr(current, 1) != "}") {
             current = Statement(code, current, tokens);
+            for (; code[current] == ' '; ++current);
         }
     } else {
         cerr << "current : " << current << endl;
