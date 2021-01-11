@@ -1,0 +1,145 @@
+S >  <true, <import>>  <false, I>  <true, <import>>  <false, I>  <true, <import>>  <false, I>  <true, <import>>  <false, I>  <true, <export>>  <true, <function>>  <true, <id, closeWebSocketConnection>>  <true, <(>>  <false, Fpf>  <true, <)>>  <true, <{>>  <false, Fb>  <true, <}>>  <true, <export>>  <true, <function>>  <true, <id, failWebSocketConnection>>  <true, <(>>  <false, Fpf>  <true, <)>>  <true, <{>>  <false, Fb>  <true, <}>>
+I >  <true, <id, WebSocket>>  <true, <from>>  <true, <path, '../websocket'>>  <true, <;>>
+I >  <true, <id, delay>>  <true, <from>>  <true, <path, '../helpers/delay'>>  <true, <;>>
+I >  <true, <id, networkBridge>>  <true, <from>>  <true, <path, '../network-bridge'>>  <true, <;>>
+I >  <true, <{>>  <true, <id, createCloseEvent>>  <false, Ide>  <true, <}>>  <true, <from>>  <true, <path, '../event/factory'>>  <true, <;>>
+Ide >  <true, <,>>  <true, <id, createEvent>>
+Fpf >  <true, <id, context>>  <false, Ide>
+Ide >  <true, <,>>  <true, <id, code>>  <true, <,>>  <true, <id, reason>>
+Fb >  <true, <id, context>>  <false, Idr>  <true, <=>>  <false, R>  <true, <;>>  <true, <const>>  <true, <id, lol>>  <true, <=>>  <false, R>  <true, <;>>  <true, <const>>  <true, <id, server>>  <true, <=>>  <false, R>  <true, <;>>  <true, <const>>  <true, <id, closeEvent>>  <true, <=>>  <false, R>  <true, <;>>  <true, <id, delay>>  <false, Idr>  <true, <(>>  <false, Fcf>  <true, <)>>  <true, <;>>
+Idr >  <true, <.>>  <true, <id, readyState>>
+R >  <true, <id, WebSocket>>  <false, Idr>
+Idr >  <true, <.>>  <true, <id, CLOSING>>
+R >  <false, A>
+A >  <false, T>
+T >  <false, P>  <false, T1>
+P >  <true, <(>>  <false, A>  <true, <)>>
+A >  <false, T>  <false, A1>
+T >  <false, P>  <false, T1>
+P >  <true, <(>>  <false, A>  <true, <)>>
+A >  <false, T>  <false, A1>
+T >  <false, P>
+P >  <true, <num, 2>>
+A1 >  <true, <+>>  <false, T>
+T >  <false, P>
+P >  <true, <num, 3>>
+T1 >  <true, </>>  <false, P>
+P >  <true, <num, 6>>
+A1 >  <true, <->>  <false, T>
+T >  <false, P>
+P >  <true, <num, 13>>
+T1 >  <true, <*>>  <false, P>
+P >  <true, <num, 4>>
+R >  <true, <id, networkBridge>>  <false, Idr>  <false, Rf>
+Idr >  <true, <.>>  <true, <id, serverLookup>>
+Rf >  <true, <(>>  <false, Fcf>  <true, <)>>
+Fcf >  <true, <id, context>>  <false, Idr>  <false, Fc>
+Idr >  <true, <.>>  <true, <id, url>>
+Fc >
+R >  <true, <id, createCloseEvent>>  <false, Idr>  <false, Rf>
+Idr >
+Rf >  <true, <(>>  <false, Fcf>  <true, <)>>
+Fcf >  <true, <{>>  <false, Ok>  <true, <}>>  <false, Fc>
+Ok >  <true, <id, type>>  <false, Ov>  <false, O>
+Ov >  <true, <:>>  <true, <str, 'close'>>
+O >  <true, <,>>  <false, Ok>
+Ok >  <true, <id, target>>  <false, Ov>  <false, O>
+Ov >  <true, <:>>  <true, <id, context>>  <false, Idr>
+Idr >
+O >  <true, <,>>  <false, Ok>
+Ok >  <true, <id, code>>  <false, O>
+O >  <true, <,>>  <false, Ok>
+Ok >  <true, <id, reason>>
+Fc >
+Idr >
+Fcf >  <true, <(>>  <true, <)>>  <true, <=>>>  <true, <{>>  <false, Fb>  <true, <}>>  <false, Fc>
+Fb >  <true, <id, networkBridge>>  <false, Idr>  <true, <(>>  <false, Fcf>  <true, <)>>  <true, <;>>  <true, <id, context>>  <false, Idr>  <true, <=>>  <false, R>  <true, <;>>  <true, <id, context>>  <false, Idr>  <true, <(>>  <false, Fcf>  <true, <)>>  <true, <;>>  <true, <if>>  <true, <(>>  <true, <id, server>>  <true, <)>>  <true, <{>>  <false, Fb>  <true, <}>>
+Idr >  <true, <.>>  <true, <id, removeWebSocket>>
+Fcf >  <true, <id, context>>  <false, Idr>  <false, Fc>
+Idr >
+Fc >  <true, <,>>  <true, <id, context>>  <false, Idr>
+Idr >  <true, <.>>  <true, <id, url>>
+Idr >  <true, <.>>  <true, <id, readyState>>
+R >  <true, <id, WebSocket>>  <false, Idr>
+Idr >  <true, <.>>  <true, <id, CLOSED>>
+Idr >  <true, <.>>  <true, <id, dispatchEvent>>
+Fcf >  <true, <id, closeEvent>>  <false, Idr>  <false, Fc>
+Idr >
+Fc >
+Fb >  <true, <id, server>>  <false, Idr>  <true, <(>>  <false, Fcf>  <true, <)>>  <true, <;>>
+Idr >  <true, <.>>  <true, <id, dispatchEvent>>
+Fcf >  <true, <id, closeEvent>>  <false, Idr>  <false, Fc>
+Idr >
+Fc >  <true, <,>>  <true, <id, server>>  <false, Idr>
+Idr >
+Fc >  <true, <,>>  <true, <id, context>>  <false, Idr>
+Idr >
+Fpf >  <true, <id, context>>  <false, Ide>
+Ide >  <true, <,>>  <true, <id, code>>  <true, <,>>  <true, <id, reason>>
+Fb >  <true, <id, context>>  <false, Idr>  <true, <=>>  <false, R>  <true, <;>>  <true, <const>>  <true, <id, server>>  <true, <=>>  <false, R>  <true, <;>>  <true, <const>>  <true, <id, closeEvent>>  <true, <=>>  <false, R>  <true, <;>>  <true, <const>>  <true, <id, errorEvent>>  <true, <=>>  <false, R>  <true, <;>>  <true, <id, delay>>  <false, Idr>  <true, <(>>  <false, Fcf>  <true, <)>>  <true, <;>>
+Idr >  <true, <.>>  <true, <id, readyState>>
+R >  <true, <id, WebSocket>>  <false, Idr>
+Idr >  <true, <.>>  <true, <id, CLOSING>>
+R >  <true, <id, networkBridge>>  <false, Idr>  <false, Rf>
+Idr >  <true, <.>>  <true, <id, serverLookup>>
+Rf >  <true, <(>>  <false, Fcf>  <true, <)>>
+Fcf >  <true, <id, context>>  <false, Idr>  <false, Fc>
+Idr >  <true, <.>>  <true, <id, url>>
+Fc >
+R >  <true, <id, createCloseEvent>>  <false, Idr>  <false, Rf>
+Idr >
+Rf >  <true, <(>>  <false, Fcf>  <true, <)>>
+Fcf >  <true, <{>>  <false, Ok>  <true, <}>>  <false, Fc>
+Ok >  <true, <id, type>>  <false, Ov>  <false, O>
+Ov >  <true, <:>>  <true, <str, 'close'>>
+O >  <true, <,>>  <false, Ok>
+Ok >  <true, <id, target>>  <false, Ov>  <false, O>
+Ov >  <true, <:>>  <true, <id, context>>  <false, Idr>
+Idr >
+O >  <true, <,>>  <false, Ok>
+Ok >  <true, <id, code>>  <false, O>
+O >  <true, <,>>  <false, Ok>
+Ok >  <true, <id, reason>>  <false, O>
+O >  <true, <,>>  <false, Ok>
+Ok >  <true, <id, wasClean>>  <false, Ov>
+Ov >  <true, <:>>  <true, <id, false>>  <false, Idr>
+Idr >
+Fc >
+R >  <true, <id, createEvent>>  <false, Idr>  <false, Rf>
+Idr >
+Rf >  <true, <(>>  <false, Fcf>  <true, <)>>
+Fcf >  <true, <{>>  <false, Ok>  <true, <}>>  <false, Fc>
+Ok >  <true, <id, type>>  <false, Ov>  <false, O>
+Ov >  <true, <:>>  <true, <str, 'error'>>
+O >  <true, <,>>  <false, Ok>
+Ok >  <true, <id, target>>  <false, Ov>
+Ov >  <true, <:>>  <true, <id, context>>  <false, Idr>
+Idr >
+Fc >
+Idr >
+Fcf >  <true, <(>>  <true, <)>>  <true, <=>>>  <true, <{>>  <false, Fb>  <true, <}>>  <false, Fc>
+Fb >  <true, <id, networkBridge>>  <false, Idr>  <true, <(>>  <false, Fcf>  <true, <)>>  <true, <;>>  <true, <id, context>>  <false, Idr>  <true, <=>>  <false, R>  <true, <;>>  <true, <id, context>>  <false, Idr>  <true, <(>>  <false, Fcf>  <true, <)>>  <true, <;>>  <true, <id, context>>  <false, Idr>  <true, <(>>  <false, Fcf>  <true, <)>>  <true, <;>>  <true, <if>>  <true, <(>>  <true, <id, server>>  <true, <)>>  <true, <{>>  <false, Fb>  <true, <}>>
+Idr >  <true, <.>>  <true, <id, removeWebSocket>>
+Fcf >  <true, <id, context>>  <false, Idr>  <false, Fc>
+Idr >
+Fc >  <true, <,>>  <true, <id, context>>  <false, Idr>
+Idr >  <true, <.>>  <true, <id, url>>
+Idr >  <true, <.>>  <true, <id, readyState>>
+R >  <true, <id, WebSocket>>  <false, Idr>
+Idr >  <true, <.>>  <true, <id, CLOSED>>
+Idr >  <true, <.>>  <true, <id, dispatchEvent>>
+Fcf >  <true, <id, errorEvent>>  <false, Idr>  <false, Fc>
+Idr >
+Fc >
+Idr >  <true, <.>>  <true, <id, dispatchEvent>>
+Fcf >  <true, <id, closeEvent>>  <false, Idr>  <false, Fc>
+Idr >
+Fc >
+Fb >  <true, <id, server>>  <false, Idr>  <true, <(>>  <false, Fcf>  <true, <)>>  <true, <;>>
+Idr >  <true, <.>>  <true, <id, dispatchEvent>>
+Fcf >  <true, <id, closeEvent>>  <false, Idr>  <false, Fc>
+Idr >
+Fc >  <true, <,>>  <true, <id, server>>  <false, Idr>
+Idr >
+Fc >  <true, <,>>  <true, <id, context>>  <false, Idr>
+Idr >

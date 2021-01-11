@@ -17,9 +17,9 @@ const std::regex charRegex("^'[a-zA-Z0-9]'");
 
 class Lexer {
 private:
+    std::string code;
+    std::vector<Token *> tokens;
 
-
-public:
     void normalize(std::string &code) {
         code = regex_replace(code, oneLineCommentsRegex, "");
         code = regex_replace(code, multiLineCommentsRegex, "");
@@ -86,6 +86,7 @@ public:
         bool first = true;
         while (code.substr(current, 1) != ")") {
             if (!first && code.substr(current, 1) == ",") {
+                tokens.push_back(new Token(TokenType::VALUE, ","));
                 current++;
             } else {
                 if (!first) {
@@ -444,7 +445,7 @@ public:
 
     uint Function(std::string &code, uint current, std::vector<Token *> &tokens) {
         for (; code[current] == ' '; ++current);
-        tokens.push_back(new Token(TokenType::VALUE, "function"));
+//        tokens.push_back(new Token(TokenType::VALUE, "function"));
         current = _getTypeAndName(code, current, tokens);
         current = ArgList(code, current, tokens);
         for (; code[current] == ' '; ++current);
@@ -452,14 +453,13 @@ public:
         return current;
     }
 
-
     void tokenize(std::string &code, std::vector<Token *> &tokens) {
         uint current = 0;
         try {
             while (current != code.length()) {
                 for (; code[current] == ' '; ++current);
                 if (code.substr(current, 8) == "#include") {
-                    tokens.push_back(new Token(TokenType::VALUE, "library"));
+                    tokens.push_back(new Token(TokenType::VALUE, "include"));
                     current = LibraryName(code, current + 8, tokens);
                 } else {
                     current = Function(code, current, tokens);
@@ -473,5 +473,23 @@ public:
             std::cerr << e << std::endl;
 //        tokens = vector<Token *>();
         }
+    }
+public:
+    std::vector<Token *> analyze(std::string inFileName) {
+        std::ifstream inFile(inFileName);
+        if (!inFile.is_open()) {
+            std::cout << "shit";
+            return std::vector<Token *>();
+        }
+        this->code = std::string((std::istreambuf_iterator<char>(inFile)), std::istreambuf_iterator<char>());
+        this->normalize(this->code);
+        // std::cout << this->code << "\n";
+        this->tokens = std::vector<Token *>();
+        this->tokenize(this->code, this->tokens);
+        // for (Token* t : this->tokens) {
+        // std::cout << t->toString() << "\n";
+        // }
+        inFile.close();
+        return this->tokens;
     }
 };

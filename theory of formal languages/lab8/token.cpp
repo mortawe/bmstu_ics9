@@ -4,13 +4,11 @@ enum class TokenType {
     ID, NUMBER, STRING, PATH, VALUE, LIBRARY, TYPE
 };
 
-class Token {
-private:
+struct Token {
     TokenType type;
     std::string value;
+    Token(TokenType type, std::string value) : type(type), value(value) {}
 
-public:
-    Token(TokenType type, std::string value): type(type), value(value) {}
     std::string toString() {
         std::string res = "<";
         switch (this->type) {
@@ -40,4 +38,14 @@ public:
         }
         return res + ">";
     }
+    friend bool operator==(const Token& left, const Token& right);
+    friend bool operator!=(const Token& left, const Token& right);
 };
+
+bool operator==(const Token &left, const Token &right) {
+    return left.type == right.type && left.value == right.value;
+}
+
+bool operator!=(const Token &left, const Token &right) {
+    return left.type != right.type || left.value != right.value;
+}
