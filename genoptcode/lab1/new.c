@@ -3,29 +3,38 @@
    Contributed by Ben Elliston <bje@redhat.com>
    and Andrew MacLeod <amacleod@redhat.com>
    Adapted to use control dependence by Steven Bosscher, SUSE Labs.
+
 This file is part of GCC.
+
 GCC is free software; you can redistribute it and/or modify it
 under the terms of the GNU General Public License as published by the
 Free Software Foundation; either version 3, or (at your option) any
 later version.
+
 GCC is distributed in the hope that it will be useful, but WITHOUT
 ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
 FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
 for more details.
+
 You should have received a copy of the GNU General Public License
 along with GCC; see the file COPYING3.  If not see
 <http://www.gnu.org/licenses/>.  */
 
 /* Dead code elimination.
+
    References:
+
      Building an Optimizing Compiler,
      Robert Morgan, Butterworth-Heinemann, 1998, Section 8.9.
+
      Advanced Compiler Design and Implementation,
      Steven Muchnick, Morgan Kaufmann, 1997, Section 18.10.
+
    Dead-code elimination is the removal of statements which have no
    impact on the program's output.  "Dead statements" have no impact
    on the program's output, while "necessary statements" may have
    impact on the output.
+
    The algorithm consists of three phases:
    1. Marking as necessary all statements known to be necessary,
       e.g. most function calls, writing a value to memory, etc;
@@ -90,6 +99,7 @@ static sbitmap bb_contains_live_stmts;
 
 /* Before we can determine whether a control branch is dead, we need to
    compute which blocks are control dependent on which edges.
+
    We expect each block to be control dependent on very few edges so we
    use a bitmap for each block recording its edges.  An array holds the
    bitmap.  The Ith bit in the bitmap is set if that block is dependent
@@ -102,6 +112,7 @@ static sbitmap visited_control_parents;
 
 /* TRUE if this pass alters the CFG (by removing control statements).
    FALSE otherwise.
+
    If this pass alters the CFG, then it will arrange for the dominators
    to be recomputed.  */
 static bool cfg_altered;
@@ -176,6 +187,7 @@ mark_operand_necessary (tree op)
 
 /* Mark STMT as necessary if it obviously is.  Add it to the worklist if
    it can make other statements necessary.
+
    If AGGRESSIVE is false, control statements are conservatively marked as
    necessary.  */
 
@@ -311,6 +323,7 @@ mark_last_stmt_necessary (basic_block bb)
 
 /* Mark control dependent edges of BB as necessary.  We have to do this only
    once for each basic block so we set the appropriate bit after we're done.
+
    When IGNORE_SELF is true, ignore BB in the list of control dependences.  */
 
 static void
@@ -347,6 +360,7 @@ mark_control_dependent_edges_necessary (basic_block bb, bool ignore_self)
 
 /* Find obviously necessary statements.  These are things like most function
    calls, and stores to file level variables.
+
    If EL is NULL, control statements are conservatively marked as
    necessary.  Otherwise it contains the list of edges used by control
    dependence analysis.  */
@@ -364,18 +378,18 @@ find_obviously_necessary_stmts (bool aggressive)
     {
       /* PHI nodes are never inherently necessary.  */
       for (gsi = gsi_start_phis (bb); !gsi_end_p (gsi); gsi_next (&gsi))
-    	{
-    	  phi = gsi_stmt (gsi);
-    	  gimple_set_plf (phi, STMT_NECESSARY, false);
-    	}
+	{
+	  phi = gsi_stmt (gsi);
+	  gimple_set_plf (phi, STMT_NECESSARY, false);
+	}
 
       /* Check all statements in the block.  */
       for (gsi = gsi_start_bb (bb); !gsi_end_p (gsi); gsi_next (&gsi))
-    	{
-    	  stmt = gsi_stmt (gsi);
-    	  gimple_set_plf (stmt, STMT_NECESSARY, false);
-    	  mark_stmt_if_obviously_necessary (stmt, aggressive);
-    	}
+	{
+	  stmt = gsi_stmt (gsi);
+	  gimple_set_plf (stmt, STMT_NECESSARY, false);
+	  mark_stmt_if_obviously_necessary (stmt, aggressive);
+	}
     }
 
   /* Pure and const functions are finite and thus have no infinite loops in
@@ -598,9 +612,8 @@ degenerate_phi_p (gimple phi)
    Process the uses on each statement in the worklist, and add all
    feeding statements which contribute to the calculation of this
    value to the worklist.
+
    In conservative mode, EL is NULL.  */
-
-
 
 static void
 propagate_necessity (bool aggressive)
@@ -695,6 +708,7 @@ propagate_necessity (bool aggressive)
 
 	  /* For PHI operands it matters from where the control flow arrives
 	     to the BB.  Consider the following example:
+
 	     a=exp1;
 	     b=exp2;
 	     if (test)
@@ -702,10 +716,13 @@ propagate_necessity (bool aggressive)
 	     else
 		;
 	     c=PHI(a,b)
+
 	     We need to mark control dependence of the empty basic blocks, since they
 	     contains computation of PHI operands.
+
 	     Doing so is too restrictive in the case the predecestor block is in
 	     the loop. Consider:
+
 	      if (b)
 		{
 		  int i;
@@ -714,28 +731,38 @@ propagate_necessity (bool aggressive)
 		  j = 0;
 		}
 	      return j;
+
 	     There is PHI for J in the BB containing return statement.
 	     In this case the control dependence of predecestor block (that is
 	     within the empty loop) also contains the block determining number
 	     of iterations of the block that would prevent removing of empty
 	     loop in this case.
+
 	     This scenario can be avoided by splitting critical edges.
 	     To save the critical edge splitting pass we identify how the control
 	     dependence would look like if the edge was split.
+
 	     Consider the modified CFG created from current CFG by splitting
 	     edge B->C.  In the postdominance tree of modified CFG, C' is
 	     always child of C.  There are two cases how chlids of C' can look
 	     like:
+
 		1) C' is leaf
+
 		   In this case the only basic block C' is control dependent on is B.
+
 		2) C' has single child that is B
+
 		   In this case control dependence of C' is same as control
 		   dependence of B in original CFG except for block B itself.
 		   (since C' postdominate B in modified CFG)
+
 	     Now how to decide what case happens?  There are two basic options:
+
 		a) C postdominate B.  Then C immediately postdominate B and
 		   case 2 happens iff there is no other way from B to C except
 		   the edge B->C.
+
 		   There is other way from B to C iff there is succesor of B that
 		   is not postdominated by B.  Testing this condition is somewhat
 		   expensive, because we need to iterate all succesors of B.
@@ -744,6 +771,7 @@ propagate_necessity (bool aggressive)
 		   conrol dependent on B and marking control dependencies of B
 		   itself is harmless because they will be processed anyway after
 		   processing control statement in B.
+
 		b) C does not postdominate B.  Always case 1 happens since there is
 		   path from C to exit that does not go through B and thus also C'.  */
 
@@ -1167,59 +1195,65 @@ eliminate_unnecessary_stmts (void)
      released.  This helps avoid loss of debug information, as we get
      a chance to propagate all RHSs of removed SSAs into debug uses,
      rather than only the latest ones.  E.g., consider:
+
      x_3 = y_1 + z_2;
      a_5 = x_3 - b_4;
      # DEBUG a => a_5
+
      If we were to release x_3 before a_5, when we reached a_5 and
      tried to substitute it into the debug stmt, we'd see x_3 there,
      but x_3's DEF, type, etc would have already been disconnected.
      By going backwards, the debug stmt first changes to:
+
      # DEBUG a => x_3 - b_4
+
      and then to:
+
      # DEBUG a => y_1 + z_2 - b_4
+
      as desired.  */
   gcc_assert (dom_info_available_p (CDI_DOMINATORS));
   h = get_all_dominated_blocks (CDI_DOMINATORS,
 				single_succ (ENTRY_BLOCK_PTR_FOR_FN (cfun)));
 
   while (h.length ())
-  {
-    bb = h.pop ();
-
-    /* Remove dead statements.  */
-    for (gsi = gsi_last_bb (bb); !gsi_end_p (gsi); gsi = psi)
     {
-	    stmt = gsi_stmt (gsi);
+      bb = h.pop ();
 
-	    psi = gsi;
-	    gsi_prev (&psi);
+      /* Remove dead statements.  */
+      for (gsi = gsi_last_bb (bb); !gsi_end_p (gsi); gsi = psi)
+	{
+	  stmt = gsi_stmt (gsi);
 
-	    stats.total++;
+	  psi = gsi;
+	  gsi_prev (&psi);
 
-	    /* We can mark a call to free as not necessary if the
-	       defining statement of its argument is not necessary
-	       (and thus is getting removed).  */
-	    if (gimple_plf (stmt, STMT_NECESSARY)
+	  stats.total++;
+
+	  /* We can mark a call to free as not necessary if the
+	     defining statement of its argument is not necessary
+	     (and thus is getting removed).  */
+	  if (gimple_plf (stmt, STMT_NECESSARY)
 	      && gimple_call_builtin_p (stmt, BUILT_IN_FREE))
 	    {
 	      tree ptr = gimple_call_arg (stmt, 0);
 	      if (TREE_CODE (ptr) == SSA_NAME)
-		    {
-		      gimple def_stmt = SSA_NAME_DEF_STMT (ptr);
-		      if (!gimple_nop_p (def_stmt)
-		        && !gimple_plf (def_stmt, STMT_NECESSARY))
-		        gimple_set_plf (stmt, STMT_NECESSARY, false);
-		    }
+		{
+		  gimple def_stmt = SSA_NAME_DEF_STMT (ptr);
+		  if (!gimple_nop_p (def_stmt)
+		      && !gimple_plf (def_stmt, STMT_NECESSARY))
+		    gimple_set_plf (stmt, STMT_NECESSARY, false);
+		}
 	    }
 
-	    /* If GSI is not necessary then remove it.  */
-	    if (!gimple_plf (stmt, STMT_NECESSARY))
+	  /* If GSI is not necessary then remove it.  */
+	  if (!gimple_plf (stmt, STMT_NECESSARY))
 	    {
 	      if (!is_gimple_debug (stmt))
-		      something_changed = true;
+		something_changed = true;
 	      remove_dead_stmt (&gsi, bb);
 	    }
-	    else if (is_gimple_call (stmt))
+	  else if (is_gimple_call (stmt))
 	    {
 	      tree name = gimple_call_lhs (stmt);
 
@@ -1539,11 +1573,13 @@ void print_tree()
 }
 
 /* Main routine to eliminate dead code.
+
    AGGRESSIVE controls the aggressiveness of the algorithm.
    In conservative mode, we ignore control dependence and simply declare
    all but the most trivially dead branches necessary.  This mode is fast.
    In aggressive mode, control dependences are taken into account, which
    results in more dead code elimination, but at the cost of some time.
+
    FIXME: Aggressive mode before PRE doesn't work currently because
 	  the dominance info is not invalidated after DCE1.  This is
 	  not an issue right now because we only run aggressive DCE
