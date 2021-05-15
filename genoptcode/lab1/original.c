@@ -627,46 +627,6 @@ propagate_necessity (bool aggressive)
     {
       /* Take STMT from worklist.  */
       stmt = worklist.pop ();
-      int i;
-      /*switch (gimple_code(stmt)) {
-        case GIMPLE_ASM:
-          printf("asm code\n");
-          break;
-        case GIMPLE_CALL: {
-          tree callee = gimple_call_fndecl (stmt);
-          if (callee != NULL_TREE) {
-            if (strcmp(function_name(DECL_STRUCT_FUNCTION(callee)), "(nofn)")) {
-              printf("function with name %s and %d arguments %d\n",function_name(DECL_STRUCT_FUNCTION(callee)), gimple_call_num_args (stmt), strcmp(function_name(DECL_STRUCT_FUNCTION(callee)), "(nofn)"));
-              for (i=0; i<gimple_call_num_args(stmt); i++) {
-                tree arg = gimple_call_arg(stmt, i);
-                printf("%d ", i);
-                print_tree_obj(arg);
-              }
-            }
-          }
-
-        } break;
-        case GIMPLE_ASSIGN: {
-          tree lhs = gimple_assign_lhs(stmt);
-
-          printf("assign\n");
-        } break;
-        case GIMPLE_RESX: {
-          printf("GIMPLE_RESX\n");
-        } break;
-        case GIMPLE_RETURN: {
-          printf("GIMPLE_RETURN\n");
-        } break;
-        case GIMPLE_SWITCH: {
-          printf("GIMPLE_SWITCH\n");
-        } break;
-        case GIMPLE_TRY: {
-          printf("GIMPLE_TRY\n");
-        } break;
-        default: {
-          printf("default case %d\n", gimple_code(stmt));
-        }
-      }*/
 
       if (dump_file && (dump_flags & TDF_DETAILS))
 	{
@@ -1436,142 +1396,6 @@ tree_dce_done (bool aggressive)
   worklist.release ();
 }
 
-
-void printPart(tree node)
-{
-  if (node == NULL_TREE) return;
-
-  switch (TREE_CODE (node)) {
-      case IDENTIFIER_NODE: printf("%s", IDENTIFIER_POINTER (node));              break; // names of functions (calls)
-      case VAR_DECL:        printf("%s", IDENTIFIER_POINTER (DECL_NAME (node)));  break; // declarations
-      case CONST_DECL:      printf("%s", IDENTIFIER_POINTER (DECL_NAME (node)));  break; // declarations
-      case INTEGER_CST:     printf("%d", TREE_INT_CST_LOW(node));                 break; // ints
-      case SSA_NAME:  // arguments _x
-          if (SSA_NAME_IDENTIFIER (node)) {
-              printPart (SSA_NAME_IDENTIFIER (node));
-          }
-          printf("_%d", SSA_NAME_VERSION (node));
-          break;
-      default:
-          break;
-  }
-}
-
-const char* printSymbolCode (enum tree_code code)
-{
-    switch (code)
-    {
-        case TRUTH_OR_EXPR:
-        case TRUTH_ORIF_EXPR:   return "||";
-        case TRUTH_AND_EXPR:
-        case TRUTH_ANDIF_EXPR:  return "&&";
-        case EQ_EXPR:           return "==";
-        case NE_EXPR:           return "!=";
-        case LT_EXPR:           return "<";
-        case LE_EXPR:           return "<=";
-        case GT_EXPR:           return ">";
-        case GE_EXPR:           return ">=";
-        case PLUS_EXPR:         return "+";
-        case MINUS_EXPR:        return "-";
-        case MULT_EXPR:         return "*";
-        default:                return " ";
-    }
-}
-void printStmt(gimple stmt)
-{
-    tree lhs, rhs1, rhs2;
-    switch (gimple_code(stmt))
-    {
-      case GIMPLE_COND: printf("      GIMPLE_COND:\n\t");
-          lhs = gimple_assign_lhs (stmt);
-          rhs1 = gimple_assign_rhs1 (stmt);
-          printf("if (");
-          printPart(lhs);
-          printf(" %s ", op_symbol_code (gimple_cond_code (stmt)));
-          printPart(rhs1);
-          printf(") \n");
-          break;
-
-      case GIMPLE_CALL: printf("      GIMPLE_CALL:\n\t");
-          lhs = gimple_call_lhs (stmt);
-          if (lhs) {
-              printPart(lhs);
-              printf(" = ");
-          }
-          printPart(DECL_NAME (TREE_OPERAND(gimple_call_fn (stmt), 0)));
-          printf("(");
-          int i;
-          for (i = 0; i < gimple_call_num_args (stmt); i++){
-              printPart(gimple_call_arg (stmt, i));
-              if (i < gimple_call_num_args (stmt) - 1) {
-                  printf(", ");
-              }
-          }
-          printf(")\n");
-          break;
-
-      case GIMPLE_ASSIGN:         printf("      ASSIGN: %d args\n\t", gimple_num_ops (stmt));
-
-        switch (gimple_num_ops (stmt))
-        {
-            case 0:
-            case 1: break;
-            case 2:
-                lhs = gimple_assign_lhs (stmt);
-                rhs1 = gimple_assign_rhs1 (stmt);
-                printPart(lhs);
-                printf(" = ");
-                printPart(rhs1);
-                break;
-            case 3:
-                lhs = gimple_assign_lhs (stmt);
-                rhs1 = gimple_assign_rhs1 (stmt);
-                rhs2 = gimple_assign_rhs2 (stmt);
-                printPart(lhs);
-                printf(" = ");
-                printPart(rhs1);
-                //enum tree_code gimple_assign_rhs_code (gimple g)
-                //Return the code of the expression computed on the RHS of assignment statement G.
-                printf("%s ", printSymbolCode (gimple_assign_rhs_code (stmt)));
-                printPart(rhs2);
-                break;
-          }
-      break;
-      case GIMPLE_RETURN: printf("      GIMPLE_RETURN\n\t");
-          printPart(gimple_return_retval (stmt));
-          printf("\n");
-          break;
-      default:
-          break;
-    }
-}
-
-
-void print_tree()
-{
-    printf("Printing tree:\n");
-
-    printf("Function: %s", function_name(cfun));
-
-    basic_block bb;
-    gimple_stmt_iterator gsi;
-    gimple stmt;
-
-    int i = 0, j = 0;
-    FOR_EACH_BB_FN (bb, cfun)
-    {
-        j = 0;
-        printf("\n  BaseBlock:");
-        for (gsi = gsi_start_bb (bb); !gsi_end_p (gsi); gsi_next (&gsi))
-        {
-            printf("\n    Stmt %d:\n", j++);
-            stmt = gsi_stmt (gsi);
-            printStmt(stmt);
-        }
-    }
-
-}
-
 /* Main routine to eliminate dead code.
 
    AGGRESSIVE controls the aggressiveness of the algorithm.
@@ -1791,7 +1615,7 @@ public:
   /* opt_pass methods: */
   opt_pass * clone () { return new pass_cd_dce (m_ctxt); }
   bool gate () { return gate_dce (); }
-  unsigned int execute () { print_tree(); return tree_ssa_cd_dce (); }
+  unsigned int execute () { return tree_ssa_cd_dce (); }
 
 }; // class pass_cd_dce
 
