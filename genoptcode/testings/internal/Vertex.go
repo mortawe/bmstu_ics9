@@ -1,4 +1,4 @@
-package lab4
+package internal
 
 type Vertex struct {
 	Name     string
@@ -7,8 +7,8 @@ type Vertex struct {
 	children map[string]*Vertex
 
 	immediateDom *Vertex
-	stmts        []*Stmt
-	phis         []*Stmt
+	stmts        []*StmtI
+	phis         []*StmtI
 }
 
 func NewVertex(name string) *Vertex {
@@ -18,13 +18,13 @@ func NewVertex(name string) *Vertex {
 		succs:        map[string]*Vertex{},
 		children:     map[string]*Vertex{},
 		immediateDom: nil,
-		stmts:        []*Stmt{},
-		phis:         []*Stmt{},
+		stmts:        []*StmtI{},
+		phis:         []*StmtI{},
 	}
 }
 
-func (v *Vertex) prependStmt(s Stmt) {
-	t := []*Stmt{&s}
+func (v *Vertex) prependStmt(s StmtI) {
+	t := []*StmtI{&s}
 	t = append(t, v.stmts...)
 	v.stmts = t
 }
@@ -32,7 +32,7 @@ func (v *Vertex) prependStmt(s Stmt) {
 func (v *Vertex) String() string {
 	stmts := "\n"
 	for _, s := range  v.stmts {
-		stmts += "\t" + s.String() + "\n"
+		stmts += "\t" + (*s).String()+ "\n"
 	}
 	return v.Name + "{" + stmts + "}\n"
 }

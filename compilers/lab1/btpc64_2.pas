@@ -795,6 +795,12 @@ begin
   end else begin
    Error(102);
   end;
+ end else if CurrentChar='?' then begin
+   ReadChar;
+   repeat
+    ReadChar;
+   until (CurrentChar=#10) or (CurrentChar=#0);
+   GetSymbol;
  end else begin
   Error(102);
  end;

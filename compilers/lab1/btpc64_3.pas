@@ -575,6 +575,7 @@ begin
  Halt;
 end;
 
+? reading a character
 procedure ReadChar;
 begin
  if not EOF then begin
@@ -795,15 +796,13 @@ begin
   end else begin
    Error(102);
   end;
- end
- else if CurrentChar='?' then begin
+ end else if CurrentChar='?' then begin
    ReadChar;
-    repeat
-     ReadChar;
-    until (CurrentChar=#10) or (CurrentChar=#0);
-    GetSymbol;
-   end;
-  end else begin
+   repeat
+    ReadChar;
+   until (CurrentChar=#10) or (CurrentChar=#0);
+   GetSymbol;
+ end else begin
   Error(102);
  end;
 end;

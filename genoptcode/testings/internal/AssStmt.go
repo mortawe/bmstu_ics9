@@ -1,4 +1,4 @@
-package lab4
+package internal
 
 type AssStmt struct {
 	Stmt

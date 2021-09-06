@@ -1,0 +1,21 @@
+digraph {
+    1 [label="var x__1 ;\nvar y__1 ;\nvar w__1 ;\nvar z__1 ;\nvar a__1 ;\nvar b__1 ;\nx__1 = 5 ;\nvar x__2 ;\nx__2 = x__0 - 3 ;"];
+    1 -> 2;
+    2 [label="x__3 < 3"];
+    2 -> 3;
+    2 -> 5;
+    3 [label="y__1 = x__3 * 2 ;\nw__1 = y__1 ;"];
+    3 -> 4;
+    5 [label="var y__2 ;\ny__2 = x__3 * 3 ;"];
+    5 -> 4;
+    4 [label="var w__2 ;\nw__2 = x__3 - y__phi_2_3 ;\nz__1 = x__3 + y__phi_2_3 ;\nb__1 = a__1 ;"];
+    4 -> 6;
+    6 [label="x__3 < 3"];
+    6 -> 7;
+    6 -> 9;
+    7 [label="var y__3 ;\ny__3 = x__3 - 2 ;\nvar w__3 ;\nw__3 = y__3 ;"];
+    7 -> 8;
+    9 [label="var y__4 ;\ny__4 = x__3 - 3 ;"];
+    9 -> 8;
+    8 [label="var b__2 ;\nb__2 = a__1 ;\nvar x__3 ;\nx__3 = 5 ;\nvar x__4 ;\nx__4 = x__3 - 3 ;"];
+}

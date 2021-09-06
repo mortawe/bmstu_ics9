@@ -1,1 +1,6 @@
-package numerical_methods
+package main
+
+
+func main(){
+
+}

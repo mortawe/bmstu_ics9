@@ -3,6 +3,9 @@ package main
 import (
 	"errors"
 	"fmt"
+	"log"
+
+	"gonum.org/v1/gonum/mat"
 )
 
 type TridiagonalMatrix struct {
@@ -44,4 +47,51 @@ func (m *TridiagonalMatrix) Count(d []float64) ([]float64, error) {
 		x[i] = alpha[i]*x[i+1] + beta[i]
 	}
 	return x, nil
+}
+func (m *TridiagonalMatrix) getMatrix() *mat.Dense {
+	matrixF := make([]float64, m.dimension*m.dimension)
+	for i := 0; i < m.dimension; i++ {
+		for j := 0; j < m.dimension; j++ {
+			switch i {
+			case j:
+				matrixF[i*m.dimension+j] = m.b[j]
+			case j + 1:
+				matrixF[i*m.dimension+j] = m.c[j]
+			case j - 1:
+				matrixF[i*m.dimension+j] = m.a[j]
+			default:
+				matrixF[i*m.dimension+j] = 0
+			}
+		}
+	}
+	matrix := mat.NewDense(m.dimension, m.dimension, matrixF)
+	return matrix
+}
+
+func (m *TridiagonalMatrix) CalcError(x []float64, d []float64) {
+	mDense := m.getMatrix()
+	xDense := mat.NewDense(m.dimension, 1, x)
+	var dCalc mat.Dense
+	dCalc.Mul(mDense, xDense)
+
+	dDense := mat.NewDense(m.dimension, 1, d)
+
+	var rDense mat.Dense
+
+	rDense.Sub(&dCalc, dDense)
+
+	var revMatrix mat.Dense
+	err := revMatrix.Inverse(mDense)
+	if err != nil {
+		log.Println(err)
+		return
+	}
+	var resMatrix mat.Dense
+
+	resMatrix.Mul(&revMatrix, &rDense)
+
+	var xCor mat.Dense
+	xCor.Sub(xDense, &resMatrix)
+	fmt.Println("x corrected:", xCor)
+	fmt.Println("error:", resMatrix)
 }
