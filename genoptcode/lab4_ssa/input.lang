@@ -1,0 +1,31 @@
+var x;
+var y;
+var w;
+var z;
+var a;
+var b;
+x = 5;
+x = x - 3;
+if x < 3 then
+    y = x * 2;
+    w = y;
+else
+    y = x * 3;
+endif
+
+w = x - y;
+z = x + y;
+b = a;
+
+if x < 3 then
+    y = x - 2;
+    w = y;
+else
+    y = x - 3;
+endif
+
+b = a;
+
+
+x = 5;
+x = x - 3;

@@ -1,0 +1,21 @@
+digraph {
+    1 [label="var x ;\nvar y ;\nvar w ;\nvar z ;\nvar a ;\nvar b ;\nx = 5 ;\nx = x - 3 ;"];
+    1 -> 2;
+    2 [label="x < 3"];
+    2 -> 3;
+    2 -> 5;
+    3 [label="y = x * 2 ;\nw = y ;"];
+    3 -> 4;
+    5 [label="y = x * 3 ;"];
+    5 -> 4;
+    4 [label="w = x - y ;\nz = x + y ;\nb = a ;"];
+    4 -> 6;
+    6 [label="x < 3"];
+    6 -> 7;
+    6 -> 9;
+    7 [label="y = x - 2 ;\nw = y ;"];
+    7 -> 8;
+    9 [label="y = x - 3 ;"];
+    9 -> 8;
+    8 [label="b = a ;\nx = 5 ;\nx = x - 3 ;"];
+}
