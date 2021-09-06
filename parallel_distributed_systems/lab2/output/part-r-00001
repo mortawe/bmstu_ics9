@@ -1,0 +1,160 @@
+Allentown/Bethlehem/Easton	min : 11.000000; max : 23.000000; avg: 15.400000
+Aberdeen	min : 4.000000; max : 22.000000; avg: 13.000000
+Waco	min : 4.000000; max : 74.000000; avg: 26.222221
+Arcata/Eureka	min : 11.000000; max : 96.000000; avg: 64.666664
+Alexandria	min : 1.000000; max : 55.000000; avg: 15.625000
+Albany	min : 1.000000; max : 241.000000; avg: 32.928570
+Amarillo	min : 1.000000; max : 95.000000; avg: 32.318180
+Anchorage	min : 1.000000; max : 375.000000; avg: 39.580647
+Atlanta	min : 1.000000; max : 653.000000; avg: 33.398869
+Austin	min : 1.000000; max : 340.000000; avg: 29.623377
+Asheville	min : 1.000000; max : 152.000000; avg: 40.333332
+Kalamazoo	min : 1.000000; max : 122.000000; avg: 54.625000
+Hartford	min : 1.000000; max : 293.000000; avg: 32.933334
+Bethel	min : 9.000000; max : 9.000000; avg: 9.000000
+Bakersfield	min : 3.000000; max : 141.000000; avg: 43.923077
+Birmingham	min : 1.000000; max : 154.000000; avg: 30.818182
+Bismarck/Mandan	min : 2.000000; max : 272.000000; avg: 44.400002
+Bemidji	min : 2.000000; max : 4.000000; avg: 3.000000
+Bloomington/Normal	min : 3.000000; max : 241.000000; avg: 51.833332
+Nashville	min : 1.000000; max : 391.000000; avg: 31.838926
+Boise	min : 1.000000; max : 122.000000; avg: 27.879311
+Boston	min : 1.000000; max : 292.000000; avg: 34.471264
+Brunswick	min : 1.000000; max : 187.000000; avg: 94.000000
+Brainerd	min : 6.000000; max : 6.000000; avg: 6.000000
+Brownsville	min : 6.000000; max : 51.000000; avg: 22.500000
+Butte	min : 9.000000; max : 12.000000; avg: 10.500000
+Baton Rouge	min : 1.000000; max : 200.000000; avg: 41.639999
+Burlington	min : 2.000000; max : 144.000000; avg: 55.555557
+Baltimore	min : 1.000000; max : 475.000000; avg: 30.637037
+Bozeman	min : 1.000000; max : 214.000000; avg: 53.727272
+Cedar Rapids/Iowa City	min : 3.000000; max : 206.000000; avg: 44.888889
+Sault Ste. Marie	min : 3.000000; max : 123.000000; avg: 45.666668
+Carlsbad	min : 1.000000; max : 24.000000; avg: 12.000000
+College Station/Bryan	min : 1.000000; max : 40.000000; avg: 16.363636
+Charlotte	min : 1.000000; max : 263.000000; avg: 25.709141
+Champaign/Urbana	min : 1.000000; max : 129.000000; avg: 41.000000
+Cody	min : 1.000000; max : 25.000000; avg: 9.333333
+Colorado Springs	min : 3.000000; max : 224.000000; avg: 45.052631
+Columbia	min : 3.000000; max : 380.000000; avg: 117.500000
+Cincinnati	min : 1.000000; max : 179.000000; avg: 32.061729
+Mosinee	min : 2.000000; max : 150.000000; avg: 50.166668
+Dallas	min : 1.000000; max : 278.000000; avg: 27.529100
+Dayton	min : 2.000000; max : 218.000000; avg: 29.448277
+Dickinson	min : 5.000000; max : 175.000000; avg: 55.250000
+Duluth	min : 2.000000; max : 177.000000; avg: 69.000000
+Durango	min : 4.000000; max : 122.000000; avg: 34.285713
+Des Moines	min : 1.000000; max : 167.000000; avg: 34.452381
+Detroit	min : 1.000000; max : 514.000000; avg: 34.871559
+Devils Lake	min : 13.000000; max : 114.000000; avg: 63.500000
+Eau Claire	min : 3.000000; max : 264.000000; avg: 110.750000
+Panama City	min : 2.000000; max : 31.000000; avg: 12.250000
+Eagle	min : 1.000000; max : 124.000000; avg: 42.666668
+Elko	min : 10.000000; max : 59.000000; avg: 26.666666
+Elmira/Corning	min : 1.000000; max : 64.000000; avg: 31.777779
+Erie	min : 3.000000; max : 70.000000; avg: 23.200001
+Escanaba	min : 35.000000; max : 245.000000; avg: 140.000000
+Eugene	min : 3.000000; max : 94.000000; avg: 24.736841
+Fargo	min : 1.000000; max : 127.000000; avg: 28.481482
+Fayetteville	min : 4.000000; max : 41.000000; avg: 16.000000
+Flagstaff	min : 3.000000; max : 112.000000; avg: 47.000000
+Fort Lauderdale	min : 1.000000; max : 269.000000; avg: 32.903225
+Flint	min : 1.000000; max : 171.000000; avg: 46.142857
+Sioux Falls	min : 1.000000; max : 165.000000; avg: 42.281250
+Fort Wayne	min : 7.000000; max : 129.000000; avg: 38.454544
+Gillette	min : 8.000000; max : 56.000000; avg: 30.200001
+Garden City	min : 22.000000; max : 22.000000; avg: 22.000000
+Longview	min : 12.000000; max : 92.000000; avg: 48.666668
+Grand Junction	min : 1.000000; max : 39.000000; avg: 12.750000
+Gainesville	min : 2.000000; max : 86.000000; avg: 16.299999
+Gulfport/Biloxi	min : 2.000000; max : 113.000000; avg: 33.416668
+Green Bay	min : 1.000000; max : 113.000000; avg: 25.695652
+Greensboro/High Point	min : 1.000000; max : 307.000000; avg: 35.290321
+Great Falls	min : 1.000000; max : 89.000000; avg: 25.500000
+Columbus	min : 11.000000; max : 42.000000; avg: 26.500000
+Hibbing	min : 1.000000; max : 51.000000; avg: 22.250000
+Honolulu	min : 1.000000; max : 1013.000000; avg: 25.000000
+Hobbs	min : 2.000000; max : 73.000000; avg: 26.666666
+Houston	min : 1.000000; max : 171.000000; avg: 25.875000
+White Plains	min : 1.000000; max : 233.000000; avg: 40.892857
+Huntsville	min : 1.000000; max : 159.000000; avg: 46.450001
+Hays	min : 13.000000; max : 15.000000; avg: 14.000000
+Niagara Falls	min : 26.000000; max : 38.000000; avg: 32.000000
+Wilmington	min : 95.000000; max : 95.000000; avg: 95.000000
+Iron Mountain/Kingsfd	min : 69.000000; max : 114.000000; avg: 91.500000
+Indianapolis	min : 1.000000; max : 262.000000; avg: 30.113401
+International Falls	min : 33.000000; max : 33.000000; avg: 33.000000
+Williston	min : 2.000000; max : 89.000000; avg: 30.000000
+Islip	min : 1.000000; max : 240.000000; avg: 42.071430
+Jackson	min : 1.000000; max : 320.000000; avg: 39.347828
+Jacksonville	min : 1.000000; max : 142.000000; avg: 31.735849
+Joplin	min : 12.000000; max : 47.000000; avg: 30.333334
+Jamestown	min : 5.000000; max : 104.000000; avg: 55.000000
+Juneau	min : 1.000000; max : 51.000000; avg: 12.600000
+Ketchikan	min : 4.000000; max : 43.000000; avg: 18.100000
+Las Vegas	min : 1.000000; max : 251.000000; avg: 29.983425
+Lawton/Fort Sill	min : 10.000000; max : 45.000000; avg: 28.200001
+Lake Charles	min : 7.000000; max : 43.000000; avg: 18.000000
+Lexington	min : 1.000000; max : 136.000000; avg: 28.791666
+Lafayette	min : 1.000000; max : 92.000000; avg: 25.142857
+New York	min : 1.000000; max : 331.000000; avg: 39.109787
+Lincoln	min : 1.000000; max : 123.000000; avg: 37.000000
+Laredo	min : 2.000000; max : 172.000000; avg: 33.700001
+Meridian	min : 11.000000; max : 246.000000; avg: 89.666664
+Montgomery	min : 3.000000; max : 60.000000; avg: 27.666666
+Miami	min : 1.000000; max : 237.000000; avg: 30.813620
+Moline	min : 1.000000; max : 205.000000; avg: 46.750000
+Monroe	min : 7.000000; max : 161.000000; avg: 54.363636
+Minot	min : 2.000000; max : 61.000000; avg: 21.428572
+Marquette	min : 175.000000; max : 175.000000; avg: 175.000000
+Madison	min : 2.000000; max : 251.000000; avg: 47.187500
+Minneapolis	min : 1.000000; max : 371.000000; avg: 29.308176
+New Orleans	min : 1.000000; max : 199.000000; avg: 27.720720
+Myrtle Beach	min : 6.000000; max : 104.000000; avg: 36.111111
+Jacksonville/Camp Lejeune	min : 2.000000; max : 33.000000; avg: 12.200000
+Oklahoma City	min : 1.000000; max : 150.000000; avg: 34.491524
+Omaha	min : 1.000000; max : 140.000000; avg: 27.482143
+Nome	min : 8.000000; max : 14.000000; avg: 11.000000
+Ontario	min : 1.000000; max : 97.000000; avg: 22.783333
+Norfolk	min : 1.000000; max : 166.000000; avg: 29.500000
+Plattsburgh	min : 9.000000; max : 32.000000; avg: 18.000000
+West Palm Beach/Palm Beach	min : 1.000000; max : 141.000000; avg: 31.366667
+Portland	min : 1.000000; max : 185.000000; avg: 27.457144
+Phoenix	min : 1.000000; max : 498.000000; avg: 30.245689
+Hattiesburg/Laurel	min : 14.000000; max : 14.000000; avg: 14.000000
+Pocatello	min : 2.000000; max : 5.000000; avg: 3.333333
+Pensacola	min : 1.000000; max : 176.000000; avg: 25.571428
+Providence	min : 1.000000; max : 95.000000; avg: 24.604650
+Portland	min : 1.000000; max : 97.000000; avg: 25.777779
+Rapid City	min : 2.000000; max : 108.000000; avg: 36.142857
+Redding	min : 3.000000; max : 134.000000; avg: 47.500000
+Bend/Redmond	min : 2.000000; max : 131.000000; avg: 35.599998
+Rock Springs	min : 4.000000; max : 138.000000; avg: 51.333332
+Rochester	min : 1.000000; max : 179.000000; avg: 38.099998
+Fort Myers	min : 1.000000; max : 484.000000; avg: 38.020409
+San Diego	min : 1.000000; max : 267.000000; avg: 21.138393
+San Antonio	min : 1.000000; max : 391.000000; avg: 33.533897
+Savannah	min : 3.000000; max : 201.000000; avg: 32.285713
+Santa Barbara	min : 1.000000; max : 152.000000; avg: 33.111111
+Deadhorse	min : 3.000000; max : 12.000000; avg: 8.666667
+State College	min : 3.000000; max : 33.000000; avg: 17.250000
+Seattle	min : 1.000000; max : 531.000000; avg: 32.295383
+San Francisco	min : 1.000000; max : 556.000000; avg: 44.224823
+Springfield	min : 3.000000; max : 223.000000; avg: 54.590908
+San Jose	min : 1.000000; max : 206.000000; avg: 27.421875
+San Juan	min : 1.000000; max : 209.000000; avg: 32.086956
+Salt Lake City	min : 1.000000; max : 475.000000; avg: 27.509804
+Sacramento	min : 1.000000; max : 135.000000; avg: 26.524590
+Santa Maria	min : 22.000000; max : 22.000000; avg: 22.000000
+Christiansted	min : 4.000000; max : 12.000000; avg: 8.000000
+Sun Valley/Hailey/Ketchum	min : 13.000000; max : 33.000000; avg: 24.500000
+Tallahassee	min : 1.000000; max : 55.000000; avg: 17.000000
+Toledo	min : 4.000000; max : 40.000000; avg: 22.600000
+Bristol/Johnson City/Kingsport	min : 1.000000; max : 78.000000; avg: 36.250000
+Twin Falls	min : 1.000000; max : 32.000000; avg: 12.000000
+Texarkana	min : 12.000000; max : 12.000000; avg: 12.000000
+Tyler	min : 4.000000; max : 149.000000; avg: 50.200001
+Valdosta	min : 20.000000; max : 50.000000; avg: 35.000000
+Wrangell	min : 31.000000; max : 31.000000; avg: 31.000000
+Fayetteville	min : 1.000000; max : 119.000000; avg: 32.888889
+Yakutat	min : 3.000000; max : 41.000000; avg: 21.333334

@@ -1,0 +1,9 @@
+/home/master/Study/bmstu_ics9/parallel_distributed_systems/lab2/src/main/java/ru/bmstu/ics9/boyko/lab2/DelayGroupingComparator.java
+/home/master/Study/bmstu_ics9/parallel_distributed_systems/lab2/src/main/java/ru/bmstu/ics9/boyko/lab2/AirportReducer.java
+/home/master/Study/bmstu_ics9/parallel_distributed_systems/lab2/src/main/java/ru/bmstu/ics9/boyko/lab2/AirportWritable.java
+/home/master/Study/bmstu_ics9/parallel_distributed_systems/lab2/src/main/java/ru/bmstu/ics9/boyko/lab2/FlightMapper.java
+/home/master/Study/bmstu_ics9/parallel_distributed_systems/lab2/src/main/java/ru/bmstu/ics9/boyko/lab2/DelayWritableComparable.java
+/home/master/Study/bmstu_ics9/parallel_distributed_systems/lab2/src/main/java/ru/bmstu/ics9/boyko/lab2/FlightWritable.java
+/home/master/Study/bmstu_ics9/parallel_distributed_systems/lab2/src/main/java/ru/bmstu/ics9/boyko/lab2/AirportPartitioner.java
+/home/master/Study/bmstu_ics9/parallel_distributed_systems/lab2/src/main/java/ru/bmstu/ics9/boyko/lab2/AirportDelayCountApp.java
+/home/master/Study/bmstu_ics9/parallel_distributed_systems/lab2/src/main/java/ru/bmstu/ics9/boyko/lab2/AirportMapper.java

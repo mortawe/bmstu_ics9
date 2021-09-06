@@ -1,0 +1,97 @@
+<library>
+<library path, <stdio.h>>
+<library>
+<library path, <math.h>>
+<function>
+<type, int>
+<id, func>
+<(>
+<type, int>
+<id, number>
+<type, int>
+<id, c>
+<)>
+<{>
+<type, int>
+<id, counter>
+<=>
+<num, 0>
+<,>
+<id, i>
+<=>
+<num, 1>
+<;>
+<type, char>
+<id, var>
+<=>
+<str, 'f'>
+<;>
+<id, var>
+<=>
+<str, 'g'>
+<;>
+<while>
+<(>
+<id, counter>
+<<>
+<num, 5>
+<)>
+<{>
+<if>
+<(>
+<id, number>
+<<>
+<num, 10>
+<)>
+<{>
+<id, number>
+<=>
+<id, number>
+<+>
+<id, counter>
+<;>
+<}>
+<id, counter>
+<=>
+<id, counter>
+<+>
+<num, 1>
+<;>
+<}>
+<return>
+<id, number>
+<;>
+<}>
+<function>
+<type, int>
+<id, main>
+<(>
+<)>
+<{>
+<type, int>
+<id, number>
+<=>
+<num, 5>
+<;>
+<type, int>
+<id, result>
+<=>
+<id, func>
+<(>
+<id, number>
+<,>
+<num, 0>
+<)>
+<;>
+<id, printf>
+<id, printf>
+<(>
+<str, 's'>
+<,>
+<id, gdsgs>
+<)>
+<;>
+<return>
+<num, 0>
+<;>
+<}>
