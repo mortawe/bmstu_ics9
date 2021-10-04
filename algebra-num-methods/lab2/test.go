@@ -89,7 +89,7 @@ func Test(test int, preparedN int) (float64, float64, float64) {
 			}
 			for i := 0; i < n; i++ {
 				for j := 0; j < n; j++ {
-					res[i] += m[i][j] *
+					// res[i] += m[i][j] *
 				}
 			}
 		}
