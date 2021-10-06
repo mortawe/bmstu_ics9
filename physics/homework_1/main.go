@@ -15,8 +15,8 @@ var (
 	m2 = flag.Float64("m2", 5.0, "bottom pendulum mass")
 	l1 = flag.Float64("l1", 10.0, "top pod length")
 	l2 = flag.Float64("l2", 10.0, "bottom pod length")
-	t1 = flag.Float64("t1", 1.0, "top angle")
-	t2 = flag.Float64("t2", 1.0, "bottom angle")
+	a1 = flag.Float64("a1", 1.0, "top angle")
+	a2 = flag.Float64("a2", 1.0, "bottom angle")
 	w1 = flag.Float64("w1", 0.0, "init top velocity")
 	w2 = flag.Float64("w2", 0.0, "init bottom velocity")
 	dt = flag.Float64("dt", 0.1, "time step")
@@ -75,7 +75,7 @@ func run() {
 
 	win.SetSmooth(true)
 	win.SetMatrix(pixel.IM.ScaledXY(pixel.ZV, pixel.V(1, -1)).Moved(pixel.V(Nx/2, Ny/2)))
-	s := NewPendulumSystem(*m1, *m2, *l1, *l2, *t1, *t2, *w1, *w2, *g)
+	s := NewPendulumSystem(*m1, *m2, *l1, *l2, *a1, *a2, *w1, *w2, *g)
 
 	R1 := 12 * (*m1 / (*m1 + *m2))
 	R2 := 12 * (*m2 / (*m1 + *m2))
@@ -97,13 +97,13 @@ func run() {
 		}
 
 		a := pixel.Vec{
-			X: P1 * math.Sin(s.t1),
-			Y: P1 * math.Cos(s.t1),
+			X: P1 * math.Sin(s.a1),
+			Y: P1 * math.Cos(s.a1),
 		}
 		trajectoryA = append(trajectoryA, a)
 		b := a.Add(pixel.Vec{
-			X: P2 * math.Sin(s.t2),
-			Y: P2 * math.Cos(s.t2),
+			X: P2 * math.Sin(s.a2),
+			Y: P2 * math.Cos(s.a2),
 		})
 		trajectoryB = append(trajectoryB, b)
 
