@@ -48,8 +48,8 @@ func GenMatrix(n int) ([][]float64, []float64) {
 	return m, b
 }
 
-func ReadMatrix() (int, [][]float64, []float64) {
-	f, err := os.Open("lab3/test/1")
+func ReadMatrix( path string) (int, [][]float64, []float64,) {
+	f, err := os.Open(path)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -90,7 +90,7 @@ func Test(gen bool, test int, preparedN int) (float64, float64, float64) {
 			m, b = GenMatrix(preparedN)
 			n = preparedN
 		} else {
-			n, m, b = ReadMatrix()
+			n, m, b = ReadMatrix("lab3/test/1")
 		}
 
 		eps := 0.0001

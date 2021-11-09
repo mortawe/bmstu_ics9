@@ -5,7 +5,9 @@ import (
 	"log"
 	"math"
 	"math/rand"
+	"os"
 
+	"github.com/wcharczuk/go-chart/v2"
 	"gonum.org/v1/gonum/floats"
 	"gonum.org/v1/gonum/mat"
 
@@ -30,13 +32,13 @@ func GenMatrix(n int) ([][]float64, []float64) {
 	}
 	for i := 0; i < n; i++ {
 		for j := i + 1; j < n; j++ {
-			m[i][j] = float64(1000 + rand.Int() % 1000)
+			m[i][j] = float64(1000 + rand.Int()%1000)
 			m[j][i] = m[i][j]
 			// if i == j {
 			// 	m[i][i] = math.Abs(m[i][i]) * 100.0 * float64(n+1)
 			// }
 		}
-		b[i] = float64(1000 + rand.Int() % 1000)
+		b[i] = float64(1000 + rand.Int()%1000)
 	}
 
 	for i := 0; i < n; i++ {
@@ -47,7 +49,7 @@ func GenMatrix(n int) ([][]float64, []float64) {
 			}
 			sum += math.Abs(m[i][j])
 		}
-		m[i][i] = sum * math.Abs(rand.Float64()) * 1000
+		m[i][i] = sum * math.Abs(rand.Float64()) * 100000
 	}
 	return m, b
 }
@@ -57,7 +59,7 @@ func IterMethod1(n int, m [][]float64, b []float64, EPS float64) (int, []float64
 	prev := make([]float64, n)
 	copy(prev, b)
 	steps := 0
-	for ; err >= EPS; steps++ {
+	for ; err >= EPS && steps < 1000; steps++ {
 		current := make([]float64, n)
 		for i := 0; i < n; i++ {
 			current[i] = b[i]
@@ -101,11 +103,12 @@ func IterMethod(n int, m [][]float64, b []float64, EPS float64) (int, []float64)
 	steps := 0
 	for ; err >= EPS; steps++ {
 		current := make([]float64, n)
-		copy(current, b)
+		copy(current, prev)
 		for i := 0; i < n; i++ {
 			for j := 0; j < n; j++ {
 				current[i] += m[i][j] * prev[j]
 			}
+			current[i] -= b[i]
 		}
 		err = eucDiffNorm(n, current, prev)
 		copy(prev, current)
@@ -167,12 +170,10 @@ func GenUnitMatrix(n int) [][]float64 {
 	return m
 }
 
-
-
 func Test() {
-	// n := 3
+	// n := 30
 	// mGen, b := GenMatrix(n)
-	n, mGen, b := lab3.ReadMatrix()
+	n, mGen, b := lab3.ReadMatrix("lab4/test/1")
 	a := mat.NewSymDense(n, lab1.Flat(mGen))
 	det := mat.Det(a)
 	if det < 0 {
@@ -182,17 +183,77 @@ func Test() {
 	_ = eigsym.Factorize(a, true)
 	eigs := eigsym.Values(nil)
 	tL, tR, tOpt := 0.0, 2/floats.Max(eigs), 2/(floats.Max(eigs)+floats.Min(eigs))
-	m := SubsMatrix(n,  GenUnitMatrix(n), MultConstMatrix(n, mGen, tOpt))
-	fmt.Println(mGen, m)
-
 	fmt.Println(tL, tR, tOpt)
-	g := make([]float64, n)
-	for i := 0; i < n; i++ {
-		g[i] = b[i] * tOpt
-	}
-	steps1, res1 := IterMethod1(n, mGen, b, 0.0001)
-	fmt.Println(steps1, res1)
+	step := (tR - tL) / 100
+	xs, ys, zs := []float64{}, []float64{}, []float64{}
+	_, res := IterMethod1(n, mGen, b, 0.001)
 
-	steps, res := IterMethod(n, m, g, 0.0001)
-	fmt.Println(steps, res)
+	for i := tL + step; i <= tR; i += step {
+		m := SubsMatrix(n, GenUnitMatrix(n), MultConstMatrix(n, mGen, i))
+		g := make([]float64, n)
+		for j := 0; j < n; j++ {
+			g[j] = -b[j] * i
+		}
+		// fmt.Println(steps1)
+
+		steps, res1 := IterMethod1(n, m, g, 0.001)
+		// fmt.Println(steps)
+		xs = append(xs, float64(steps))
+		ys = append(ys, i)
+		if math.IsNaN(eucDiffNorm(n, res, res1)) {
+			zs = append(zs, 0.0)
+		} else {
+			zs = append(zs, eucDiffNorm(n, res, res1))
+		}
+	}
+	fmt.Println(len(xs), len(ys), len(zs))
+	// m := AddMatrix(n, GenUnitMatrix(n), MultConstMatrix(n, mGen, tOpt))
+	// g := make([]float64, n)
+	// for j := 0; j < n; j++ {
+	// 	g[j] = -b[j] * tOpt
+	// }
+	// steps, _ := IterMethod1(n, m, g, 0.001)
+
+	graph := chart.Chart{
+		Background: chart.Style{
+			Padding: chart.Box{
+				Top:  20,
+				Left: 100,
+			},
+		},
+		XAxis: chart.XAxis{
+			Name: "Param",
+			ValueFormatter: func(v interface{}) string {
+				return fmt.Sprintf("%v", v)
+			},
+		},
+		YAxis: chart.YAxis{
+			Name: "Iter Number",
+			ValueFormatter: func(v interface{}) string {
+				return fmt.Sprintf("%v", v)
+			},
+		},
+		Series: []chart.Series{
+			// chart.ContinuousSeries{
+			// Name:    "Params",
+			// XValues: ys,
+			// YValues: xs,
+		// },
+			chart.ContinuousSeries{
+				Name:    "Errors",
+				XValues: ys,
+				YValues: zs,
+			// },
+			// chart.AnnotationSeries{
+			// 	Annotations: []chart.Value2{
+			// 		{XValue: tOpt, YValue: float64(steps), Label: "Optimal"}},
+			}},
+	}
+	graph.Elements = []chart.Renderable{
+		chart.LegendLeft(&graph),
+	}
+
+	f, _ := os.Create("duffing.png")
+	defer f.Close()
+	graph.Render(chart.PNG, f)
 }
