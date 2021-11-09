@@ -33,7 +33,7 @@ func genMatrix(n int) [][]float64 {
 	return m
 }
 
-func readMatrix() (int, [][]float64) {
+func ReadMatrix() (int, [][]float64) {
 	f, err := os.Open("lab2/test/1")
 	if err != nil {
 		log.Fatal(err)
@@ -73,7 +73,7 @@ func Test(gen bool, test int, preparedN int) (float64, float64, float64) {
 		m = genMatrix(preparedN)
 		n = preparedN
 	} else {
-		n, m = readMatrix()
+		n, m = ReadMatrix()
 	}
 
 	order := order(n)

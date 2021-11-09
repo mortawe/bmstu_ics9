@@ -47,7 +47,7 @@ func testVector() {
 	}
 }
 
-func flat(x [][]float64) []float64 {
+func Flat(x [][]float64) []float64 {
 	result := []float64{}
 	for _, r := range x {
 		for _, c := range r {
@@ -75,8 +75,8 @@ func testMatrix() {
 	}
 	myMatrix := entities.NewMatrix(m, n, lMat)
 	result := myMatrix.MultiplyMatrix(entities.NewMatrix(m, n, rMat))
-	libResult := mat.NewDense(n, m, flat(lMat))
-	libResult.Mul(libResult, mat.NewDense(n, m, flat(rMat)))
+	libResult := mat.NewDense(n, m, Flat(lMat))
+	libResult.Mul(libResult, mat.NewDense(n, m, Flat(rMat)))
 	fmt.Println("my:", result, "lib:", libResult)
 }
 

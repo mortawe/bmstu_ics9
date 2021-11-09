@@ -59,3 +59,7 @@ func (m *Matrix) Transpose() *Matrix {
 	}
 	return result
 }
+
+func (m *Matrix) Dimension() int {
+	return m.m
+}

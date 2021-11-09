@@ -1,6 +1,7 @@
-package main
+package doublependulum
 
 import (
+	"fmt"
 	"math"
 )
 
@@ -10,6 +11,10 @@ type DoublePendulumSystem struct {
 	a1, a2 float64 // angle
 	g      float64 // gravity
 	w1, w2 float64 // initial velocity
+}
+
+func (s *DoublePendulumSystem) StringName() string {
+	return fmt.Sprintf("m1=%.2f, m2=%.2f, l1=%.2f, l2=%.2f", s.m1, s.m2, s.l1, s.l2)
 }
 
 func NewPendulumSystem(m1, m2, l1, l2, a1, a2, w1, w2, g float64) *DoublePendulumSystem {
@@ -61,7 +66,7 @@ func (s *DoublePendulumSystem) LagrangeRhs(k Kn) Kn {
 	return Kn{k.w1, k.w2, g1, g2}
 }
 
-func step123(step float64, k, kn Kn) Kn {
+func step23(step float64, k, kn Kn) Kn {
 	return Kn{
 		a1: k.a1 + step*kn.a1/2,
 		a2: k.a2 + step*kn.a2/2,
@@ -89,11 +94,11 @@ func resultN(step float64, k1, k2, k3, k4 Kn) Kn {
 	}
 }
 
-func (s *DoublePendulumSystem) RK4(dt float64)  {
+func (s *DoublePendulumSystem) RK4(dt float64) {
 	k := Kn{s.a1, s.a2, s.w1, s.w2}
 	k1 := s.LagrangeRhs(k)
-	k2 := s.LagrangeRhs(step123(dt, k, k1))
-	k3 := s.LagrangeRhs(step123(dt, k, k2))
+	k2 := s.LagrangeRhs(step23(dt, k, k1))
+	k3 := s.LagrangeRhs(step23(dt, k, k2))
 	k4 := s.LagrangeRhs(step4(dt, k, k3))
 
 	r := resultN(dt, k1, k2, k3, k4)
