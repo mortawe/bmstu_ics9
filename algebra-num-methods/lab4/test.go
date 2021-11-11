@@ -107,7 +107,7 @@ func IterMethod2(n int, m [][]float64, b []float64, EPS float64) (int, []float64
 		if math.Abs(err)*mt <= EPS {
 			return steps, prev
 		}
-		if math.IsNaN(err) {
+		if math.IsNaN(err) || math.IsInf(err, 1) || math.IsInf(err, -1) {
 			return -1, prev
 		}
 		prev = current
@@ -189,11 +189,11 @@ func GenUnitMatrix(n int) [][]float64 {
 	return m
 }
 func Test() {
-	n := 5
+	n := 50
 	mGen, b := GenMatrix(n)
 	// n, mGen, b := lab3.ReadMatrix("lab4/test/1")
 	a := mat.NewSymDense(n, lab1.Flat(mGen))
-	fmt.Println(mGen)
+	// fmt.Println(mGen)
 	var eigsym mat.EigenSym
 	_ = eigsym.Factorize(a, true)
 	eigs := eigsym.Values(nil)
@@ -202,9 +202,9 @@ func Test() {
 	fmt.Println(tL, tR, tOpt)
 	step := (tR - tL) / 100
 	xs, ys, zs := []float64{}, []float64{}, []float64{}
-	eps := 0.001
+	eps := 0.0001
 	res, _ := lib.GaussPartial(mGen, b)
-	fmt.Println(res)
+	// fmt.Println(res)
 
 	// _, res1 := IterMethod(n, mGen, b, eps)
 
@@ -214,26 +214,35 @@ func Test() {
 	}
 	// _, res1 := IterMethod(n,  MultConstMatrix(n, mGen, tOpt), g, eps)
 	// fmt.Println(res, res1)
-	for i := tL + step; i <= tR + step; i += step {
-	// for i := tOpt - step; i <= tR; i += step {
+	for i := tL + step; i < tR-step; i += step {
+	// for i := tOpt; i <= tR; i += step {
 		t := i
-		if tOpt-i < step {
+		if math.Abs(tOpt-i) < step {
 			t = tOpt
 		}
+		fmt.Println("t = ", t)
+
 		m := SubsMatrix(n, GenUnitMatrix(n), MultConstMatrix(n, mGen, t))
+		T := mat.NewSymDense(n, lab1.Flat(m))
+
+		var eigsymT mat.EigenSym
+		_ = eigsymT.Factorize(T, true)
+		mt = floats.Max(eigsymT.Values(nil))
+
 		g := make([]float64, n)
 		for j := 0; j < n; j++ {
 			g[j] = b[j] * t
 		}
-		mDet := mat.NewSymDense(n, lab1.Flat(m))
-		mt = mat.Norm(mDet, 1)
-		fmt.Println(mt)
-		if mt > 1 {
-			// panic("norm > 1")
+
+		fmt.Println("\t", mt)
+		if mt >= 1 {
+			fmt.Println("\tnorm > 1 when t = ", t)
+			break
 		}
 		mt = math.Abs(mt / (1 - mt))
 		steps, res1 := IterMethod2(n, m, g, eps)
 		if steps == -1 {
+			fmt.Println("\tnope")
 			continue
 		}
 		xs = append(xs, float64(steps))
